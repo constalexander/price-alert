@@ -1,5 +1,5 @@
 {
-  "name": "price-alert-ng",
+  "name": "price-alert",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:price-alert-ng": "node dist/price-alert-ng/server/server.mjs"
+    "serve:ssr:price-alert": "node dist/price-alert/server/server.mjs"
   },
   "private": true,
   "dependencies": {
