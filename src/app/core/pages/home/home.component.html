@@ -1,15 +1,54 @@
 <div class="container mx-auto p-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-4xl font-bold mb-6">Welcome to Price Alert</h1>
-    <p class="text-lg text-gray-600 mb-8">Track prices, set alerts, and never miss a deal.</p>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="flex items-center justify-between mb-8">
+      <div>
+        <h1 class="text-4xl font-bold mb-2">Price Alert Dashboard</h1>
+        <p class="text-lg text-gray-600">Monitor your price alerts and market movements</p>
+      </div>
+      <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90" routerLink="/alerts/create">
+        Create Alert
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-xl font-semibold mb-4">Recent Alerts</h2>
-        <p class="text-gray-600">No alerts set yet.</p>
+        <h3 class="text-lg font-semibold mb-2">Active Alerts</h3>
+        <p class="text-3xl font-bold text-primary">0</p>
       </div>
       <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-xl font-semibold mb-4">Price Trends</h2>
-        <p class="text-gray-600">Start tracking prices to see trends.</p>
+        <h3 class="text-lg font-semibold mb-2">Triggered Today</h3>
+        <p class="text-3xl font-bold text-green-500">0</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-lg font-semibold mb-2">Markets Tracked</h3>
+        <p class="text-3xl font-bold text-blue-500">0</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-lg font-semibold mb-2">Total Alerts</h3>
+        <p class="text-3xl font-bold text-gray-700">0</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Recent Alerts</h2>
+          <a class="text-primary hover:underline" routerLink="/alerts">View All</a>
+        </div>
+        <div class="text-gray-600 text-center py-8">
+          <p class="mb-4">No alerts set yet</p>
+          <button class="text-primary hover:underline" routerLink="/alerts/create">Create your first alert</button>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Market Overview</h2>
+          <a class="text-primary hover:underline" routerLink="/markets">View Markets</a>
+        </div>
+        <div class="text-gray-600 text-center py-8">
+          <p>Start tracking markets to see overview</p>
+        </div>
       </div>
     </div>
   </div>

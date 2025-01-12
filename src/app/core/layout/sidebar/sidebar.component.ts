@@ -14,37 +14,30 @@ import { RouterLink } from '@angular/router';
 export class SidebarComponent {
   menuItems: MenuItem[] = [
     {
-      label: 'Dashboards',
-      items: [{ label: 'E-Commerce', icon: 'pi pi-home', routerLink: '/e-commerce' }],
+      label: 'Dashboard',
+      items: [{ label: 'Overview', icon: 'pi pi-home', routerLink: '/' }],
     },
     {
-      label: 'Apps',
+      label: 'Price Alerts',
       items: [
-        { label: 'Blog', icon: 'pi pi-book' },
-        { label: 'Calendar', icon: 'pi pi-calendar' },
-        { label: 'Chat', icon: 'pi pi-comments' },
-        { label: 'Files', icon: 'pi pi-file' },
-        { label: 'Kanban', icon: 'pi pi-table' },
-        { label: 'Mail', icon: 'pi pi-envelope' },
-        { label: 'Task List', icon: 'pi pi-check-square' },
+        { label: 'My Alerts', icon: 'pi pi-bell', routerLink: '/alerts' },
+        { label: 'Create Alert', icon: 'pi pi-plus', routerLink: '/alerts/create' },
       ],
     },
     {
-      label: 'UI Kit',
+      label: 'Markets',
       items: [
-        { label: 'Form Layout', icon: 'pi pi-id-card' },
-        { label: 'Input', icon: 'pi pi-pencil' },
-        { label: 'Float Label', icon: 'pi pi-tag' },
-        { label: 'Invalid State', icon: 'pi pi-exclamation-circle' },
-        { label: 'Button', icon: 'pi pi-box' },
-        { label: 'Table', icon: 'pi pi-table' },
-        { label: 'List', icon: 'pi pi-list' },
-        { label: 'Tree', icon: 'pi pi-sitemap' },
-        { label: 'Panel', icon: 'pi pi-window-maximize' },
-        { label: 'Overlay', icon: 'pi pi-clone' },
-        { label: 'Media', icon: 'pi pi-image' },
-        { label: 'Menu', icon: 'pi pi-bars' },
-        { label: 'Message', icon: 'pi pi-comment' },
+        { label: 'Stocks', icon: 'pi pi-chart-line', routerLink: '/markets/stocks' },
+        { label: 'ETFs', icon: 'pi pi-chart-bar', routerLink: '/markets/etfs' },
+        { label: 'Crypto', icon: 'pi pi-bitcoin', routerLink: '/markets/crypto' },
+        { label: 'Precious Metals', icon: 'pi pi-dollar', routerLink: '/markets/metals' },
+      ],
+    },
+    {
+      label: 'Settings',
+      items: [
+        { label: 'Notifications', icon: 'pi pi-bell', routerLink: '/settings/notifications' },
+        { label: 'Account', icon: 'pi pi-user', routerLink: '/settings/account' },
       ],
     },
   ];

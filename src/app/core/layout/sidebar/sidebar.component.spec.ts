@@ -13,41 +13,54 @@ describe('SidebarComponent', () => {
   it('should render the sidebar with navigation sections', async () => {
     await setup();
 
-    expect(screen.getByText('Dashboards')).toBeInTheDocument();
-    expect(screen.getByText('Apps')).toBeInTheDocument();
-    expect(screen.getByText('UI Kit')).toBeInTheDocument();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
+    expect(screen.getByText('Price Alerts')).toBeInTheDocument();
+    expect(screen.getByText('Markets')).toBeInTheDocument();
+    expect(screen.getByText('Settings')).toBeInTheDocument();
   });
 
   it('should display dashboard items when expanded', async () => {
     await setup();
 
-    await userEvent.click(screen.getByText('Dashboards'));
-    expect(screen.getByText('E-Commerce')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('Dashboard'));
+    expect(screen.getByText('Overview')).toBeInTheDocument();
   });
 
-  it('should display apps menu items when expanded', async () => {
+  it('should display price alerts menu items when expanded', async () => {
     await setup();
 
-    await userEvent.click(screen.getByText('Apps'));
-    expect(screen.getByText('Blog')).toBeInTheDocument();
-    expect(screen.getByText('Calendar')).toBeInTheDocument();
-    expect(screen.getByText('Chat')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('Price Alerts'));
+    expect(screen.getByText('My Alerts')).toBeInTheDocument();
+    expect(screen.getByText('Create Alert')).toBeInTheDocument();
   });
 
-  it('should display UI Kit menu items when expanded', async () => {
+  it('should display markets menu items when expanded', async () => {
     await setup();
 
-    await userEvent.click(screen.getByText('UI Kit'));
-    expect(screen.getByText('Form Layout')).toBeInTheDocument();
-    expect(screen.getByText('Button')).toBeInTheDocument();
-    expect(screen.getByText('Table')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('Markets'));
+    expect(screen.getByText('Stocks')).toBeInTheDocument();
+    expect(screen.getByText('ETFs')).toBeInTheDocument();
+    expect(screen.getByText('Crypto')).toBeInTheDocument();
+    expect(screen.getByText('Precious Metals')).toBeInTheDocument();
+  });
+
+  it('should display settings menu items when expanded', async () => {
+    await setup();
+
+    await userEvent.click(screen.getByText('Settings'));
+    expect(screen.getByText('Notifications')).toBeInTheDocument();
+    expect(screen.getByText('Account')).toBeInTheDocument();
   });
 
   it('should have working navigation links', async () => {
     await setup();
 
-    await userEvent.click(screen.getByText('Dashboards'));
-    const eCommerceLink = screen.getByText('E-Commerce');
-    expect(eCommerceLink).toHaveAttribute('href', '/e-commerce');
+    await userEvent.click(screen.getByText('Dashboard'));
+    const overviewLink = screen.getByText('Overview');
+    expect(overviewLink).toHaveAttribute('href', '/');
+
+    await userEvent.click(screen.getByText('Price Alerts'));
+    const createAlertLink = screen.getByText('Create Alert');
+    expect(createAlertLink).toHaveAttribute('href', '/alerts/create');
   });
 });
