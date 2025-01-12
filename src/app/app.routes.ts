@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
 import { SandboxComponent } from './core/pages/sandbox/sandbox.component';
+import { HomeComponent } from './core/pages/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'sandbox',
-    pathMatch: 'full',
+    component: HomeComponent,
+    title: 'Home',
   },
   {
     path: 'sandbox',
