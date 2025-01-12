@@ -8,3 +8,31 @@
   @tailwind components;
   @tailwind utilities;
 }
+
+// Apply dark mode and background color to the entire app
+@layer tailwind-utilities {
+  body {
+    @apply bg-dark text-gray-200;
+  }
+}
+
+// Override PrimeNG panel menu styles for dark mode
+@layer tailwind-utilities {
+  .p-panelmenu {
+    .p-panelmenu-header-link {
+      @apply bg-transparent border-none text-gray-400;
+
+      &:hover {
+        @apply bg-dark-50;
+      }
+    }
+
+    .p-menuitem-link {
+      @apply text-gray-400;
+
+      &:hover {
+        @apply bg-dark-50;
+      }
+    }
+  }
+}

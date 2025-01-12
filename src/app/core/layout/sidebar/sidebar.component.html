@@ -1,9 +1,18 @@
-<div class="h-screen w-64 bg-[#1e2530] text-gray-300">
+<div class="h-screen w-64 bg-[#1e2530] text-purple-300">
   <div class="p-4 [&_.p-panelmenu]:bg-transparent [&_.p-panelmenu]:border-none">
     <p-panelMenu
       [model]="menuItems"
       [multiple]="false"
-      class="[&_.p-panelmenu-header-link]:text-slate-400 [&_.p-panelmenu-header-link]:py-3 [&_.p-panelmenu-header-link]:px-4 [&_.p-panelmenu-header-link:hover]:bg-white/5 [&_.p-menuitem-link]:text-slate-400 [&_.p-menuitem-link]:py-3 [&_.p-menuitem-link]:px-4 [&_.p-menuitem-link:hover]:bg-white/5"
-    ></p-panelMenu>
+      styleClass="w-full"
+      class="[&_.p-panelmenu-header-link]:text-purple-500 [&_.p-panelmenu-header-link]:py-3 [&_.p-panelmenu-header-link]:px-4 [&_.p-panelmenu-header-link:hover]:bg-white/5 [&_.p-menuitem-link]:text-purple-400 [&_.p-menuitem-link]:py-3 [&_.p-menuitem-link]:px-4 [&_.p-menuitem-link:hover]:bg-white/5"
+    >
+      <ng-template #item let-item>
+        <a [routerLink]="item.routerLink" class="flex items-center px-4 py-2 cursor-pointer group">
+          <i [class]="item.icon + ' text-slate-200 group-hover:text-white'"></i>
+          <span class="ml-2">{{ item.label }}</span>
+          <i *ngIf="item.items" class="pi pi-angle-down ml-auto"></i>
+        </a>
+      </ng-template>
+    </p-panelMenu>
   </div>
 </div>
