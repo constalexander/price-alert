@@ -1,3 +1,7 @@
-<main>
-  <router-outlet />
-</main>
+<!-- Using Tailwind for layout -->
+<div class="flex min-h-screen">
+  <app-sidebar />
+  <main class="flex-1">
+    <router-outlet />
+  </main>
+</div>
