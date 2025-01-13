@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TooltipModule } from 'primeng/tooltip';
 import { CryptoService, CryptoSearchResult } from '@/core/services/crypto.service';
 import { SettingsService } from '@/core/services/settings.service';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
@@ -11,7 +12,7 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
   selector: 'app-crypto-price',
   templateUrl: './crypto-price.component.html',
   standalone: true,
-  imports: [CommonModule, FormsModule, AutoCompleteModule, ButtonModule],
+  imports: [CommonModule, FormsModule, AutoCompleteModule, ButtonModule, TooltipModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CryptoPriceComponent {

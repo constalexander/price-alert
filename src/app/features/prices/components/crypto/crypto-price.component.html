@@ -11,12 +11,12 @@
       placeholder="Symbol (BTC, ETH, XRP ...)"
       [dropdown]="true"
       [showClear]="true"
-      class="w-64"
+      class="w-64 [&_.p-autocomplete-panel]:!w-64"
     >
       <ng-template let-crypto pTemplate="item">
-        <div class="flex flex-col">
-          <span class="font-medium">{{ crypto.symbol.toUpperCase() }}</span>
-          <span class="text-sm text-gray-500">{{ crypto.name }}</span>
+        <div class="flex flex-col w-52">
+          <span class="font-medium truncate">{{ crypto.symbol.toUpperCase() }}</span>
+          <span class="text-sm text-gray-500 truncate" [pTooltip]="crypto.name">{{ crypto.name }}</span>
         </div>
       </ng-template>
     </p-autoComplete>
