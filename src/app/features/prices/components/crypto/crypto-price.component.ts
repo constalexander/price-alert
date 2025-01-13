@@ -5,7 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CryptoService, CryptoSearchResult } from '@/core/services/crypto.service';
 import { SettingsService } from '@/core/services/settings.service';
-import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-crypto-price',
@@ -34,6 +34,10 @@ export class CryptoPriceComponent {
     return this.settingsService.defaultCurrency();
   }
 
+  get canGetPrice(): boolean {
+    return this.selectedCrypto !== null && typeof this.selectedCrypto === 'object' && 'id' in this.selectedCrypto;
+  }
+
   private setupSearch(): void {
     this.searchSubject.pipe(debounceTime(300), distinctUntilChanged()).subscribe((query) => {
       if (query) {
@@ -47,6 +51,12 @@ export class CryptoPriceComponent {
 
   onSearch(event: { query: string }): void {
     this.searchSubject.next(event.query);
+  }
+
+  onSelect(): void {
+    this.error = '';
+    this.price = null;
+    this.cdr.markForCheck();
   }
 
   private searchCryptos(query: string): void {
@@ -64,13 +74,13 @@ export class CryptoPriceComponent {
   }
 
   getPrice(): void {
-    if (!this.selectedCrypto) return;
+    if (!this.canGetPrice) return;
 
     this.loading = true;
     this.error = '';
     this.cdr.markForCheck();
 
-    this.cryptoService.getCryptoPrice(this.selectedCrypto.id, this.selectedCurrency).subscribe({
+    this.cryptoService.getCryptoPrice(this.selectedCrypto!.id, this.selectedCurrency).subscribe({
       next: (price) => {
         this.price = price;
         this.loading = false;
