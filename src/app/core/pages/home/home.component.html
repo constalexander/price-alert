@@ -7,7 +7,7 @@
       </div>
       <button
         class="bg-primary hover:bg-primary-600 text-white px-6 py-2 rounded-lg transition-colors"
-        routerLink="/alerts/create"
+        (click)="showCreateAlert()"
       >
         Create Alert
       </button>
@@ -40,7 +40,7 @@
         </div>
         <div class="text-gray-400 text-center py-8">
           <p class="mb-4">No alerts set yet</p>
-          <button class="text-primary hover:text-primary-400 transition-colors" routerLink="/alerts/create">
+          <button class="text-primary hover:text-primary-400 transition-colors" (click)="showCreateAlert()">
             Create your first alert
           </button>
         </div>
@@ -58,3 +58,5 @@
     </div>
   </div>
 </div>
+
+<app-create-alert-dialog></app-create-alert-dialog>
