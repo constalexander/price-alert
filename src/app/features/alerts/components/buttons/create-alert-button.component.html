@@ -1,0 +1,39 @@
+<p-button #btn type="button" label="Create Alert" styleClass="min-w-[140px]" (click)="op.toggle($event)"></p-button>
+
+<p-popover #op>
+  <ng-template pTemplate="content">
+    <div class="flex flex-col gap-4">
+      <div>
+        <span class="font-medium block mb-2">Select Asset Type</span>
+        <ul class="list-none p-0 m-0 flex flex-col">
+          <li
+            class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border"
+            (click)="selectAssetType('crypto')"
+          >
+            <i class="pi pi-bitcoin text-xl"></i>
+            <div>
+              <span class="font-medium">Crypto</span>
+              <div class="text-sm text-surface-500 dark:text-surface-400">Monitor crypto prices</div>
+            </div>
+          </li>
+          <li class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border">
+            <i class="pi pi-chart-line text-xl"></i>
+            <div>
+              <span class="font-medium">Stock</span>
+              <div class="text-sm text-surface-500 dark:text-surface-400">Track stock prices</div>
+            </div>
+          </li>
+          <li class="flex items-center gap-2 px-2 py-3 hover:bg-emphasis cursor-pointer rounded-border">
+            <i class="pi pi-dollar text-xl"></i>
+            <div>
+              <span class="font-medium">Precious Metal</span>
+              <div class="text-sm text-surface-500 dark:text-surface-400">Track metal prices</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+</p-popover>
+
+<app-create-alert-dialog></app-create-alert-dialog>

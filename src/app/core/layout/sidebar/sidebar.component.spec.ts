@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
-import { SidebarComponent } from './sidebar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SidebarComponent } from './sidebar.component';
 import userEvent from '@testing-library/user-event';
 
 describe('SidebarComponent', () => {
@@ -15,7 +15,6 @@ describe('SidebarComponent', () => {
 
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Price Alerts')).toBeInTheDocument();
-    expect(screen.getByText('Markets')).toBeInTheDocument();
     expect(screen.getByText('Settings')).toBeInTheDocument();
   });
 
@@ -34,21 +33,10 @@ describe('SidebarComponent', () => {
     expect(screen.getByText('Create Alert')).toBeInTheDocument();
   });
 
-  it('should display markets menu items when expanded', async () => {
-    await setup();
-
-    await userEvent.click(screen.getByText('Markets'));
-    expect(screen.getByText('Stocks')).toBeInTheDocument();
-    expect(screen.getByText('ETFs')).toBeInTheDocument();
-    expect(screen.getByText('Crypto')).toBeInTheDocument();
-    expect(screen.getByText('Precious Metals')).toBeInTheDocument();
-  });
-
   it('should display settings menu items when expanded', async () => {
     await setup();
 
     await userEvent.click(screen.getByText('Settings'));
-    expect(screen.getByText('Notifications')).toBeInTheDocument();
     expect(screen.getByText('Account')).toBeInTheDocument();
   });
 

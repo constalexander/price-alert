@@ -30,16 +30,6 @@ export class SidebarComponent {
       ],
     },
     {
-      label: 'Markets',
-      icon: 'pi pi-chart-line',
-      items: [
-        { label: 'Stocks', icon: 'pi pi-chart-bar', routerLink: '/markets/stocks' },
-        { label: 'ETFs', icon: 'pi pi-chart-line', routerLink: '/markets/etfs' },
-        { label: 'Crypto', icon: 'pi pi-bitcoin', routerLink: '/markets/crypto' },
-        { label: 'Precious Metals', icon: 'pi pi-dollar', routerLink: '/markets/metals' },
-      ],
-    },
-    {
       label: 'Settings',
       icon: 'pi pi-cog',
       items: [{ label: 'Account', icon: 'pi pi-user', routerLink: '/settings' }],

@@ -5,12 +5,7 @@
         <h1 class="text-4xl font-bold mb-2 text-gray-100">Price Alert Dashboard</h1>
         <p class="text-lg text-gray-400">Monitor your price alerts and market movements</p>
       </div>
-      <button
-        class="bg-primary hover:bg-primary-600 text-white px-6 py-2 rounded-lg transition-colors"
-        (click)="showCreateAlert()"
-      >
-        Create Alert
-      </button>
+      <app-create-alert-button></app-create-alert-button>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
@@ -40,9 +35,7 @@
         </div>
         <div class="text-gray-400 text-center py-8">
           <p class="mb-4">No alerts set yet</p>
-          <button class="text-primary hover:text-primary-400 transition-colors" (click)="showCreateAlert()">
-            Create your first alert
-          </button>
+          <app-create-alert-button></app-create-alert-button>
         </div>
       </div>
 
@@ -58,5 +51,3 @@
     </div>
   </div>
 </div>
-
-<app-create-alert-dialog></app-create-alert-dialog>
