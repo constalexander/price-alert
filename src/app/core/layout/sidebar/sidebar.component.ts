@@ -42,10 +42,7 @@ export class SidebarComponent {
     {
       label: 'Settings',
       icon: 'pi pi-cog',
-      items: [
-        { label: 'Notifications', icon: 'pi pi-bell', routerLink: '/settings/notifications' },
-        { label: 'Account', icon: 'pi pi-user', routerLink: '/settings/account' },
-      ],
+      items: [{ label: 'Account', icon: 'pi pi-user', routerLink: '/settings' }],
     },
   ];
 }
