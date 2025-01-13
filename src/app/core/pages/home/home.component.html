@@ -3,12 +3,12 @@
     <div class="flex items-center justify-between mb-8">
       <div>
         <h1 class="text-4xl font-bold mb-2 text-gray-100">Price Alert Dashboard</h1>
-        <p class="text-lg text-gray-400">Monitor your price alerts and market movements</p>
+        <p class="text-lg text-gray-400">Monitor your price alerts</p>
       </div>
       <app-create-alert-button></app-create-alert-button>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
       <div class="bg-dark-card p-6 rounded-lg">
         <h3 class="text-lg font-semibold mb-2 text-gray-300">Active Alerts</h3>
         <p class="text-3xl font-bold text-primary">0</p>
@@ -18,35 +18,19 @@
         <p class="text-3xl font-bold text-green-400">0</p>
       </div>
       <div class="bg-dark-card p-6 rounded-lg">
-        <h3 class="text-lg font-semibold mb-2 text-gray-300">Markets Tracked</h3>
-        <p class="text-3xl font-bold text-blue-400">0</p>
-      </div>
-      <div class="bg-dark-card p-6 rounded-lg">
         <h3 class="text-lg font-semibold mb-2 text-gray-300">Total Alerts</h3>
         <p class="text-3xl font-bold text-gray-400">0</p>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div class="bg-dark-card p-6 rounded-lg">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold text-gray-200">Recent Alerts</h2>
-          <a class="text-primary hover:text-primary-400 transition-colors" routerLink="/alerts">View All</a>
-        </div>
-        <div class="text-gray-400 text-center py-8">
-          <p class="mb-4">No alerts set yet</p>
-          <app-create-alert-button></app-create-alert-button>
-        </div>
+    <div class="bg-dark-card p-6 rounded-lg">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold text-gray-200">Recent Alerts</h2>
+        <a class="text-primary hover:text-primary-400 transition-colors" routerLink="/alerts">View All</a>
       </div>
-
-      <div class="bg-dark-card p-6 rounded-lg">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold text-gray-200">Market Overview</h2>
-          <a class="text-primary hover:text-primary-400 transition-colors" routerLink="/markets">View Markets</a>
-        </div>
-        <div class="text-gray-400 text-center py-8">
-          <p>Start tracking markets to see overview</p>
-        </div>
+      <div class="text-gray-400 text-center py-8">
+        <p class="mb-4">No alerts set yet</p>
+        <app-create-alert-button></app-create-alert-button>
       </div>
     </div>
   </div>
