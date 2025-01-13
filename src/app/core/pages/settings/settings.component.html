@@ -9,8 +9,8 @@
         <label class="text-gray-300">Default Currency:</label>
         <p-selectButton
           [options]="currencyOptions"
-          [(ngModel)]="selectedCurrency"
-          (onChange)="onCurrencyChange()"
+          [ngModel]="selectedCurrency"
+          (ngModelChange)="onCurrencyChange($event)"
           optionLabel="value"
           optionValue="value"
         >

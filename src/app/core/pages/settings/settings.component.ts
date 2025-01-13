@@ -24,7 +24,7 @@ export class SettingsComponent {
     return this.settingsService.defaultCurrency();
   }
 
-  onCurrencyChange(): void {
-    this.settingsService.setDefaultCurrency(this.selectedCurrency as Currency);
+  onCurrencyChange(currency: Currency): void {
+    this.settingsService.setDefaultCurrency(currency);
   }
 }
