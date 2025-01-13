@@ -16,7 +16,10 @@ export class SidebarComponent {
     {
       label: 'Dashboard',
       icon: 'pi pi-th-large',
-      items: [{ label: 'Overview', icon: 'pi pi-home', routerLink: '/' }],
+      items: [
+        { label: 'Overview', icon: 'pi pi-home', routerLink: '/' },
+        { label: 'Sandbox', icon: 'pi pi-code', routerLink: '/sandbox' },
+      ],
     },
     {
       label: 'Price Alerts',

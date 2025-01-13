@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-4 p-4">
+  <div class="flex gap-2">
+    <input pInputText [(ngModel)]="symbol" placeholder="Enter crypto symbol (e.g. bitcoin)" class="w-64" />
+    <p-button
+      [label]="loading ? 'Loading...' : 'Get Price'"
+      [loading]="loading"
+      (onClick)="getPrice()"
+      [disabled]="!symbol"
+    ></p-button>
+  </div>
+
+  <div *ngIf="price !== null" class="text-lg">Current price: ${{ price }}</div>
+
+  <div *ngIf="error" class="text-red-500">
+    {{ error }}
+  </div>
+</div>

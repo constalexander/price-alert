@@ -27,7 +27,93 @@
             "extends": []
         }
     ],
-    "injectables": [],
+    "injectables": [
+        {
+            "name": "CryptoService",
+            "id": "injectable-CryptoService-1120cbaaacdf8bee9e4404e72e4cc9bab1f0259e7c8d138d986c9e49ae228516abe295c922779cbe767a9c51d7fe41bad148e8ace90681420722158afb0de780",
+            "file": "src/app/core/services/crypto.service.ts",
+            "properties": [
+                {
+                    "name": "baseUrl",
+                    "defaultValue": "'https://api.coingecko.com/api/v3'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getCryptoPrice",
+                    "args": [
+                        {
+                            "name": "symbol",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<number>",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "symbol",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { Observable, map } from 'rxjs';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class CryptoService {\n  private readonly baseUrl = 'https://api.coingecko.com/api/v3';\n\n  constructor(private http: HttpClient) {}\n\n  getCryptoPrice(symbol: string): Observable<number> {\n    return this.http\n      .get<any>(`${this.baseUrl}/simple/price`, {\n        params: {\n          ids: symbol.toLowerCase(),\n          vs_currencies: 'usd',\n        },\n      })\n      .pipe(\n        map((response) => {\n          const price = response[symbol.toLowerCase()]?.usd;\n          if (!price) {\n            throw new Error(`Price not found for ${symbol}`);\n          }\n          return price;\n        })\n      );\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "type": "injectable"
+        }
+    ],
     "guards": [],
     "interceptors": [],
     "classes": [],
@@ -223,6 +309,143 @@
                     }
                 }
             }
+        },
+        {
+            "name": "CryptoPriceComponent",
+            "id": "component-CryptoPriceComponent-23ebf74e4433c757cca07b88588093200f06fb50315eb84c6ea99623c8b104ca3c171aa2d87f3a1f972045b69d32a9aac6a47d33aff9fe334f920d40ea42b5ec",
+            "file": "src/app/features/prices/components/crypto/crypto-price.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-crypto-price",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./crypto-price.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "error",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 19
+                },
+                {
+                    "name": "loading",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "price",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number | null",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 17
+                },
+                {
+                    "name": "symbol",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "getPrice",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "InputTextModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ButtonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { FormsModule } from '@angular/forms';\nimport { InputTextModule } from 'primeng/inputtext';\nimport { ButtonModule } from 'primeng/button';\nimport { CryptoService } from '@/core/services/crypto.service';\n\n@Component({\n  selector: 'app-crypto-price',\n  templateUrl: './crypto-price.component.html',\n  standalone: true,\n  imports: [CommonModule, FormsModule, InputTextModule, ButtonModule],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class CryptoPriceComponent {\n  symbol = '';\n  price: number | null = null;\n  loading = false;\n  error = '';\n\n  constructor(private cryptoService: CryptoService) {}\n\n  getPrice(): void {\n    if (!this.symbol) return;\n\n    this.loading = true;\n    this.error = '';\n\n    this.cryptoService.getCryptoPrice(this.symbol).subscribe({\n      next: (price) => {\n        this.price = price;\n        this.loading = false;\n      },\n      error: (err) => {\n        this.error = err.message;\n        this.price = null;\n        this.loading = false;\n      },\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "cryptoService",
+                        "type": "CryptoService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 19,
+                "jsdoctags": [
+                    {
+                        "name": "cryptoService",
+                        "type": "CryptoService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<div class=\"flex flex-col gap-4 p-4\">\n  <div class=\"flex gap-2\">\n    <input pInputText [(ngModel)]=\"symbol\" placeholder=\"Enter crypto symbol (e.g. bitcoin)\" class=\"w-64\" />\n    <p-button\n      [label]=\"loading ? 'Loading...' : 'Get Price'\"\n      [loading]=\"loading\"\n      (onClick)=\"getPrice()\"\n      [disabled]=\"!symbol\"\n    ></p-button>\n  </div>\n\n  <div *ngIf=\"price !== null\" class=\"text-lg\">Current price: ${{ price }}</div>\n\n  <div *ngIf=\"error\" class=\"text-red-500\">\n    {{ error }}\n  </div>\n</div>\n"
         },
         {
             "name": "HeaderComponent",
@@ -448,7 +671,7 @@
         },
         {
             "name": "SandboxComponent",
-            "id": "component-SandboxComponent-f95438868aa6ea10032b59644969a760c45a919901f58b7b798b47002ece0d24eba4b1bf3429809902845792deee39b8b8760f9b226fde3ee87f333b74e30937",
+            "id": "component-SandboxComponent-cb1829a7b1b38f2f87e3785baa3fa1668ac8d36cc35f2df91bdb20d641ef3d689c024cef8e2c0c45d91e229b895dc16e527bf2829490fbb4ce4f0f40a7602b6c",
             "file": "src/app/core/pages/sandbox/sandbox.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -477,17 +700,21 @@
                 {
                     "name": "CommonModule",
                     "type": "module"
+                },
+                {
+                    "name": "CryptoPriceComponent",
+                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n@Component({\n  selector: 'app-sandbox',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './sandbox.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SandboxComponent {\n  // This component will be a container for various sandbox components\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { provideHttpClient, withFetch } from '@angular/common/http';\nimport { CryptoPriceComponent } from '@/features/prices/components/crypto/crypto-price.component';\n\n@Component({\n  selector: 'app-sandbox',\n  standalone: true,\n  imports: [CommonModule, CryptoPriceComponent],\n  templateUrl: './sandbox.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SandboxComponent {\n  // This component will be a container for various sandbox components\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "templateData": "<div class=\"container mx-auto p-4\">\n  <h1 class=\"text-2xl font-bold mb-4\">Sandbox</h1>\n  <div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4\">\n    <!-- Sandbox components will be placed here -->\n  </div>\n</div>\n"
+            "templateData": "<div class=\"p-4\">\n  <h1 class=\"text-2xl font-bold mb-4\">Sandbox</h1>\n\n  <div class=\"space-y-8\">\n    <section>\n      <h2 class=\"text-xl font-semibold mb-4\">Crypto Price Component</h2>\n      <app-crypto-price></app-crypto-price>\n    </section>\n  </div>\n</div>\n"
         },
         {
             "name": "SidebarComponent",
@@ -583,7 +810,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "ApplicationConfig",
-                "defaultValue": "{\n  providers: [\n    provideAnimationsAsync(),\n    provideRouter(routes),\n    provideClientHydration(),\n    providePrimeNG({\n      theme: {\n        preset: MyPreset,\n        options: {\n          mode: 'dark',\n          cssLayer: {\n            name: 'primeng',\n            order: 'tailwind-base, primeng, tailwind-utilities',\n          },\n        },\n      },\n    }), provideServiceWorker('ngsw-worker.js', {\n            enabled: !isDevMode(),\n            registrationStrategy: 'registerWhenStable:30000'\n          }),\n  ],\n}"
+                "defaultValue": "{\n  providers: [\n    provideAnimationsAsync(),\n    provideRouter(routes),\n    provideHttpClient(withFetch()),\n    provideClientHydration(),\n    providePrimeNG({\n      theme: {\n        preset: MyPreset,\n        options: {\n          mode: 'dark',\n          cssLayer: {\n            name: 'primeng',\n            order: 'tailwind-base, primeng, tailwind-utilities',\n          },\n        },\n      },\n    }),\n    provideServiceWorker('ngsw-worker.js', {\n      enabled: !isDevMode(),\n      registrationStrategy: 'registerWhenStable:30000',\n    }),\n  ],\n}"
             },
             {
                 "name": "bootstrap",
@@ -735,7 +962,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
-                    "defaultValue": "{\n  providers: [\n    provideAnimationsAsync(),\n    provideRouter(routes),\n    provideClientHydration(),\n    providePrimeNG({\n      theme: {\n        preset: MyPreset,\n        options: {\n          mode: 'dark',\n          cssLayer: {\n            name: 'primeng',\n            order: 'tailwind-base, primeng, tailwind-utilities',\n          },\n        },\n      },\n    }), provideServiceWorker('ngsw-worker.js', {\n            enabled: !isDevMode(),\n            registrationStrategy: 'registerWhenStable:30000'\n          }),\n  ],\n}"
+                    "defaultValue": "{\n  providers: [\n    provideAnimationsAsync(),\n    provideRouter(routes),\n    provideHttpClient(withFetch()),\n    provideClientHydration(),\n    providePrimeNG({\n      theme: {\n        preset: MyPreset,\n        options: {\n          mode: 'dark',\n          cssLayer: {\n            name: 'primeng',\n            order: 'tailwind-base, primeng, tailwind-utilities',\n          },\n        },\n      },\n    }),\n    provideServiceWorker('ngsw-worker.js', {\n      enabled: !isDevMode(),\n      registrationStrategy: 'registerWhenStable:30000',\n    }),\n  ],\n}"
                 },
                 {
                     "name": "MyPreset",
@@ -801,7 +1028,7 @@
     },
     "routes": [],
     "coverage": {
-        "count": 9,
+        "count": 8,
         "status": "low",
         "files": [
             {
@@ -888,6 +1115,24 @@
                 "name": "SandboxComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/crypto.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "CryptoService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/prices/components/crypto/crypto-price.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "CryptoPriceComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
