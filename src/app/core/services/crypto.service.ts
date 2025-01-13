@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, catchError, throwError, switchMap } from 'rxjs';
+import { Observable, map, catchError, throwError } from 'rxjs';
 
 interface CoinGeckoSearchResult {
   coins: Array<{
@@ -11,6 +11,13 @@ interface CoinGeckoSearchResult {
   }>;
 }
 
+export interface CryptoSearchResult {
+  id: string;
+  symbol: string;
+  name: string;
+  market_cap_rank: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -19,42 +26,41 @@ export class CryptoService {
 
   constructor(private http: HttpClient) {}
 
-  getCryptoPrice(input: string, currency: string = 'usd'): Observable<number> {
-    const query = input.trim();
-
+  getCryptoPrice(coinId: string, currency: string = 'usd'): Observable<number> {
     return this.http
-      .get<CoinGeckoSearchResult>(`${this.baseUrl}/search`, {
-        params: { query },
+      .get<any>(`${this.baseUrl}/simple/price`, {
+        params: {
+          ids: coinId,
+          vs_currencies: currency,
+        },
       })
       .pipe(
-        map((result) => {
-          const coin = result.coins[0];
-          if (!coin) {
-            throw new Error(`Cryptocurrency ${input} not found`);
-          }
-          return coin.id;
-        }),
-        switchMap((coinId) =>
-          this.http.get<any>(`${this.baseUrl}/simple/price`, {
-            params: {
-              ids: coinId,
-              vs_currencies: currency,
-            },
-          })
-        ),
         map((response) => {
-          const [coinId] = Object.keys(response);
           const price = response[coinId]?.[currency];
           if (!price) {
-            throw new Error(`Price not found for ${input}`);
+            throw new Error(`Price not found for ${coinId}`);
           }
           return price;
         }),
         catchError((error) => {
           if (error.status === 404) {
-            return throwError(() => new Error(`Cryptocurrency ${input} not found`));
+            return throwError(() => new Error(`Cryptocurrency ${coinId} not found`));
           }
           return throwError(() => error);
+        })
+      );
+  }
+
+  searchCryptos(query: string): Observable<CryptoSearchResult[]> {
+    return this.http
+      .get<CoinGeckoSearchResult>(`${this.baseUrl}/search`, {
+        params: { query: query.trim() },
+      })
+      .pipe(
+        map((result) => result.coins),
+        catchError((error) => {
+          console.error('Error searching cryptocurrencies:', error);
+          return throwError(() => new Error('Failed to search cryptocurrencies'));
         })
       );
   }

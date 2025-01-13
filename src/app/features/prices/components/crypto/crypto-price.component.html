@@ -1,11 +1,28 @@
 <div class="flex flex-col gap-4 p-4">
   <div class="flex gap-2">
-    <input pInputText [(ngModel)]="symbol" placeholder="BTC, ETH, XRP ..." class="w-64" (keyup.enter)="getPrice()" />
+    <p-autoComplete
+      [(ngModel)]="selectedCrypto"
+      [suggestions]="suggestions"
+      (completeMethod)="onSearch($event)"
+      [field]="'symbol'"
+      placeholder="Search crypto (BTC, ETH...)"
+      [dropdown]="true"
+      [showClear]="true"
+      class="w-64"
+    >
+      <ng-template let-crypto pTemplate="item">
+        <div class="flex flex-col">
+          <span class="font-medium">{{ crypto.symbol.toUpperCase() }}</span>
+          <span class="text-sm text-gray-500">{{ crypto.name }}</span>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+
     <p-button
       [label]="loading ? 'Loading...' : 'Get Price'"
       [loading]="loading"
       (onClick)="getPrice()"
-      [disabled]="!symbol"
+      [disabled]="!selectedCrypto"
     ></p-button>
   </div>
 
