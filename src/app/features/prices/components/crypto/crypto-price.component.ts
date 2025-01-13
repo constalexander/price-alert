@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CryptoService } from '@/core/services/crypto.service';
+import { SettingsService } from '@/core/services/settings.service';
 
 @Component({
   selector: 'app-crypto-price',
@@ -17,10 +18,11 @@ export class CryptoPriceComponent {
   price: number | null = null;
   loading = false;
   error = '';
-  selectedCurrency = 'usd';
+  selectedCurrency = this.settingsService.defaultCurrency;
 
   constructor(
     private cryptoService: CryptoService,
+    private settingsService: SettingsService,
     private cdr: ChangeDetectorRef
   ) {}
 

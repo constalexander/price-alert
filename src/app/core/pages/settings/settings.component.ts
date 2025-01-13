@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { SettingsService } from '@/core/services/settings.service';
+import { Currency } from '@/core/models/currency.model';
 
 @Component({
   selector: 'app-settings',
@@ -11,15 +13,18 @@ import { SelectButtonModule } from 'primeng/selectbutton';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
-  selectedCurrency = 'usd';
-
   currencyOptions = [
-    { icon: 'pi pi-dollar', value: 'usd' },
-    { icon: 'pi pi-euro', value: 'eur' },
+    { icon: 'pi pi-dollar', value: 'usd' as Currency },
+    { icon: 'pi pi-euro', value: 'eur' as Currency },
   ];
 
+  constructor(private settingsService: SettingsService) {}
+
+  get selectedCurrency() {
+    return this.settingsService.defaultCurrency();
+  }
+
   onCurrencyChange(): void {
-    // TODO: Implement currency change persistence
-    console.log('Currency changed to:', this.selectedCurrency);
+    this.settingsService.setDefaultCurrency(this.selectedCurrency as Currency);
   }
 }
