@@ -18,13 +18,16 @@ export class CryptoPriceComponent {
   price: number | null = null;
   loading = false;
   error = '';
-  selectedCurrency = this.settingsService.defaultCurrency;
 
   constructor(
     private cryptoService: CryptoService,
     private settingsService: SettingsService,
     private cdr: ChangeDetectorRef
   ) {}
+
+  get selectedCurrency() {
+    return this.settingsService.defaultCurrency();
+  }
 
   getPrice(): void {
     if (!this.symbol) return;
