@@ -1,22 +1,19 @@
 import { Routes } from '@angular/router';
-import { SandboxComponent } from './core/pages/sandbox/sandbox.component';
-import { HomeComponent } from './core/pages/home/home.component';
-import { SettingsComponent } from './core/pages/settings/settings.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    loadComponent: () => import('./core/pages/home/home.component').then((m) => m.HomeComponent),
     title: 'Home',
   },
   {
     path: 'sandbox',
-    component: SandboxComponent,
+    loadComponent: () => import('./core/pages/sandbox/sandbox.component').then((m) => m.SandboxComponent),
     title: 'Sandbox',
   },
   {
     path: 'settings',
-    component: SettingsComponent,
+    loadComponent: () => import('./core/pages/settings/settings.component').then((m) => m.SettingsComponent),
     title: 'Settings',
   },
 ];
