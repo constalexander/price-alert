@@ -1,9 +1,9 @@
-import { config } from 'dotenv';
-import { writeFileSync } from 'fs';
-import { join } from 'path';
+const dotenv = require('dotenv');
+const fs = require('fs');
+const path = require('path');
 
 // Load environment variables from .env-local
-config({ path: '.env-local' });
+dotenv.config({ path: '.env-local' });
 
 // Create the environment file content
 const environmentFileContent = `export const environment = {
@@ -13,6 +13,6 @@ const environmentFileContent = `export const environment = {
 `;
 
 // Write the environment file
-writeFileSync(join(__dirname, '../src/environments/environment.ts'), environmentFileContent);
+fs.writeFileSync(path.join(__dirname, '../src/environments/environment.ts'), environmentFileContent);
 
 console.log('Environment file generated!');
