@@ -11,7 +11,6 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 @Component({
   selector: 'app-crypto-price',
   templateUrl: './crypto-price.component.html',
-  standalone: true,
   imports: [CommonModule, FormsModule, AutoCompleteModule, ButtonModule, TooltipModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

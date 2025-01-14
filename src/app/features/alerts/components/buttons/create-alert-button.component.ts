@@ -5,7 +5,6 @@ import { CreateAlertDialogComponent } from '@/features/prices/components/dialogs
 
 @Component({
   selector: 'app-create-alert-button',
-  standalone: true,
   imports: [ButtonModule, PopoverModule, CreateAlertDialogComponent],
   templateUrl: './create-alert-button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

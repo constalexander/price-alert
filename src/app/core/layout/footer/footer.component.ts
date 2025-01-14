@@ -4,7 +4,6 @@ import { DisclaimerDialogComponent } from '@/core/legal/disclaimer-dialog.compon
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  standalone: true,
   imports: [DisclaimerDialogComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

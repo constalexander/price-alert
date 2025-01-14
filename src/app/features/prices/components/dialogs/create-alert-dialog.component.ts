@@ -5,7 +5,6 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-create-alert-dialog',
   templateUrl: './create-alert-dialog.component.html',
-  standalone: true,
   imports: [DialogModule, ButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

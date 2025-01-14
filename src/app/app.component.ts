@@ -7,7 +7,6 @@ import { LegalService } from '@/core/services/legal.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [RouterOutlet, SidebarComponent, FooterComponent, DisclaimerDialogComponent],
   templateUrl: './app.component.html',
 })

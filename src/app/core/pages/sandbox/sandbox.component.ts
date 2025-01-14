@@ -5,7 +5,6 @@ import { CryptoPriceComponent } from '@/features/prices/components/crypto/crypto
 
 @Component({
   selector: 'app-sandbox',
-  standalone: true,
   imports: [CommonModule, CryptoPriceComponent],
   templateUrl: './sandbox.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,7 +8,6 @@ import { Currency } from '@/core/models/currency.model';
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  standalone: true,
   imports: [CommonModule, FormsModule, SelectButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

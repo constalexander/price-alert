@@ -4,7 +4,6 @@ import { CreateAlertButtonComponent } from '@/features/alerts/components/buttons
 
 @Component({
   selector: 'app-home',
-  standalone: true,
   imports: [RouterLink, CreateAlertButtonComponent],
   templateUrl: './home.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
