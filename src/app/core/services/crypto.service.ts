@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map, catchError, throwError } from 'rxjs';
 
@@ -23,8 +23,9 @@ export interface CryptoSearchResult {
 })
 export class CryptoService {
   private readonly baseUrl = 'https://api.coingecko.com/api/v3';
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getCryptoPrice(coinId: string, currency: string = 'usd'): Observable<number> {
     return this.http

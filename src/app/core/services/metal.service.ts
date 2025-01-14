@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '@/env/environment';
@@ -19,8 +19,9 @@ export interface MetalPriceResponse {
 export class MetalService {
   private readonly API_URL = 'https://api.metalpriceapi.com/v1';
   private readonly API_KEY = environment.METAL_PRICE_API_KEY;
+  private http = inject(HttpClient);
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
   getGoldPrice(currency: string = 'USD'): Observable<number> {
     return this.http

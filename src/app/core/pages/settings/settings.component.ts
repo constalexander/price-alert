@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -12,12 +12,14 @@ import { Currency } from '@/core/models/currency.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {
+  private settingsService = inject(SettingsService);
+
   currencyOptions = [
     { icon: 'pi pi-dollar', value: 'usd' as Currency },
     { icon: 'pi pi-euro', value: 'eur' as Currency },
   ];
 
-  constructor(private settingsService: SettingsService) {}
+  constructor() {}
 
   get selectedCurrency() {
     return this.settingsService.defaultCurrency();

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 
@@ -10,8 +10,9 @@ import { ButtonModule } from 'primeng/button';
 })
 export class CreateAlertDialogComponent {
   visible = false;
+  private cdr = inject(ChangeDetectorRef);
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor() {}
 
   show() {
     this.visible = true;

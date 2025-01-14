@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, inject } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { LegalService } from '@/core/services/legal.service';
@@ -11,8 +11,9 @@ import { LegalService } from '@/core/services/legal.service';
 })
 export class DisclaimerDialogComponent {
   visible = signal(false);
+  private legalService = inject(LegalService);
 
-  constructor(private legalService: LegalService) {}
+  constructor() {}
 
   show(): void {
     this.visible.set(true);

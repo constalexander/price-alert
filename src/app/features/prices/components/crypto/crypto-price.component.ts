@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -15,6 +15,10 @@ import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CryptoPriceComponent {
+  private cryptoService = inject(CryptoService);
+  private settingsService = inject(SettingsService);
+  private cdr = inject(ChangeDetectorRef);
+
   selectedCrypto: CryptoSearchResult | null = null;
   suggestions: CryptoSearchResult[] = [];
   price: number | null = null;
@@ -22,11 +26,7 @@ export class CryptoPriceComponent {
   error = '';
   private searchSubject = new Subject<string>();
 
-  constructor(
-    private cryptoService: CryptoService,
-    private settingsService: SettingsService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor() {
     this.setupSearch();
   }
 
