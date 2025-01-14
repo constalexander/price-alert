@@ -3,7 +3,7 @@
     [visible]="visible()"
     (visibleChange)="visible.set($event)"
     [modal]="true"
-    header="Important Disclaimer"
+    header="Disclaimer"
     [style]="{ width: '90%', maxWidth: '600px' }"
     [draggable]="false"
     [resizable]="false"
@@ -23,13 +23,13 @@
         <li>You should consult with qualified financial advisors before making any investment decisions</li>
       </ul>
       <p>
-        Seriously. I created this free tool to showcase my app-building skills and I'm using free APIs. This is not a
-        product built for profit and could give you erroneous financial advice.
+        Seriously. I created this free tool to showcase my app-building skills and is not intended to be used for
+        financial decisions. USE AT YOUR OWN RISK.
       </p>
     </div>
 
     <div class="flex justify-center mt-6">
-      <p-button label="I Understand" (onClick)="hide()" severity="primary"></p-button>
+      <p-button label="I Accept The Risk" (onClick)="hide()" severity="primary"></p-button>
     </div>
   </p-dialog>
 } @placeholder {
