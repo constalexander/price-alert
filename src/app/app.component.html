@@ -1,11 +1,9 @@
-<!-- Using Tailwind for layout -->
-<div class="flex h-screen overflow-hidden bg-dark-card">
-  <app-sidebar />
-  <div class="flex flex-col flex-1">
-    <main class="flex-1 overflow-y-auto">
-      <router-outlet />
-    </main>
-    <app-footer />
-  </div>
+<!-- Using Tailwind Grid layout -->
+<div class="grid h-screen grid-cols-[auto_1fr] grid-rows-[1fr_auto]">
+  <app-sidebar class="row-start-1 row-end-2" />
+  <main class="overflow-y-auto">
+    <router-outlet />
+  </main>
+  <app-footer class="col-span-2" />
 </div>
 <app-disclaimer-dialog />
