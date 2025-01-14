@@ -1,32 +1,35 @@
-<p-dialog
-  [(visible)]="visible"
-  [modal]="true"
-  header="Important Disclaimer"
-  [style]="{ width: '90%', maxWidth: '600px' }"
-  [draggable]="false"
-  [resizable]="false"
-  [closeOnEscape]="false"
-  [closable]="false"
-  class="disclaimer-dialog"
->
-  <div class="space-y-4">
-    <p>
-      This website is for educational and informational purposes only. The information provided should not be construed
-      as financial advice.
-    </p>
-    <p>
-      We do not guarantee the accuracy, completeness, or timeliness of any information presented. You acknowledge and
-      agree that:
-    </p>
-    <ul class="list-disc pl-6 space-y-2">
-      <li>Any investment decisions you make are solely your responsibility</li>
-      <li>We are not responsible for any financial gains or losses resulting from your use of this service</li>
-      <li>Past performance is not indicative of future results</li>
-      <li>You should consult with qualified financial advisors before making any investment decisions</li>
-    </ul>
-  </div>
+@if (isPlatformBrowser(platformId)) {
+  <p-dialog
+    [visible]="visible()"
+    (visibleChange)="visible.set($event)"
+    [modal]="true"
+    header="Important Disclaimer"
+    [style]="{ width: '90%', maxWidth: '600px' }"
+    [draggable]="false"
+    [resizable]="false"
+    [closeOnEscape]="false"
+    [closable]="false"
+    class="disclaimer-dialog"
+  >
+    <div class="space-y-4 text-xs">
+      <p>
+        This website is for educational and informational purposes only. The information provided should not be
+        construed as financial advice. We do not guarantee the accuracy, completeness, or timeliness of any information
+        presented. You acknowledge and agree that:
+      </p>
+      <ul class="list-disc pl-6 space-y-2">
+        <li>Any investment decisions you make are solely your responsibility</li>
+        <li>We are not responsible for any financial gains or losses resulting from your use of this service</li>
+        <li>You should consult with qualified financial advisors before making any investment decisions</li>
+      </ul>
+      <p>
+        Seriously. I created this free tool to showcase my app-building skills and I'm using free APIs. This is not a
+        product built for profit and could give you erroneous financial advice.
+      </p>
+    </div>
 
-  <div class="flex justify-center mt-6">
-    <p-button label="I Understand" (onClick)="hide()" severity="primary"></p-button>
-  </div>
-</p-dialog>
+    <div class="flex justify-center mt-6">
+      <p-button label="I Understand" (onClick)="hide()" severity="primary"></p-button>
+    </div>
+  </p-dialog>
+}

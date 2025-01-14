@@ -4,15 +4,9 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class LegalService {
-  private readonly DISCLAIMER_SHOWN_KEY = 'disclaimer_shown';
-  private disclaimerShownSignal = signal<boolean>(this.hasDisclaimerBeenShown());
-
-  hasDisclaimerBeenShown(): boolean {
-    return localStorage.getItem(this.DISCLAIMER_SHOWN_KEY) === 'true';
-  }
+  private disclaimerShownSignal = signal<boolean>(false);
 
   markDisclaimerAsShown(): void {
-    localStorage.setItem(this.DISCLAIMER_SHOWN_KEY, 'true');
     this.disclaimerShownSignal.set(true);
   }
 

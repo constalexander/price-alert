@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, PLATFORM_ID, inject } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { LegalService } from '@/core/services/legal.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-disclaimer-dialog',
@@ -11,16 +12,23 @@ import { LegalService } from '@/core/services/legal.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisclaimerDialogComponent {
-  visible = false;
+  visible = signal(false);
+  protected readonly platformId = inject(PLATFORM_ID);
+  protected readonly isPlatformBrowser = isPlatformBrowser;
 
   constructor(private legalService: LegalService) {}
 
   show(): void {
-    this.visible = true;
+    if (isPlatformBrowser(this.platformId)) {
+      this.visible.set(true);
+    }
   }
 
   hide(): void {
-    this.visible = false;
-    this.legalService.markDisclaimerAsShown();
+    console.log('DisclaimerDialog: hide() called');
+    if (isPlatformBrowser(this.platformId)) {
+      this.visible.set(false);
+      this.legalService.markDisclaimerAsShown();
+    }
   }
 }
