@@ -5,6 +5,8 @@ import { ButtonModule } from 'primeng/button';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { MetalService } from '@/core/services/metal.service';
 import { SettingsService } from '@/core/services/settings.service';
+import { NotificationService } from '@/core/services/notification.service';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-metal-price',
@@ -24,11 +26,10 @@ export class MetalPriceComponent {
   loading = false;
   error = '';
 
-  constructor(
-    private metalService: MetalService,
-    private settingsService: SettingsService,
-    private cdr: ChangeDetectorRef
-  ) {}
+  private metalService = inject(MetalService);
+  private settingsService = inject(SettingsService);
+  private notificationService = inject(NotificationService);
+  private cdr = inject(ChangeDetectorRef);
 
   get selectedCurrency() {
     return this.settingsService.defaultCurrency();
@@ -36,6 +37,10 @@ export class MetalPriceComponent {
 
   get canGetPrice(): boolean {
     return this.selectedMetal !== null;
+  }
+
+  get selectedMetalName(): string {
+    return this.metalOptions.find((m) => m.value === this.selectedMetal)?.label || '';
   }
 
   onSelect(): void {
@@ -64,5 +69,13 @@ export class MetalPriceComponent {
         this.cdr.markForCheck();
       },
     });
+  }
+
+  async createAlert(): Promise<void> {
+    if (!this.selectedMetal || this.price === null) return;
+
+    console.log('Creating alert...'); // Debug log
+    const message = `Alert created for ${this.selectedMetalName} at ${this.selectedCurrency === 'usd' ? '$' : '€'}${this.price.toLocaleString()}`;
+    await this.notificationService.showNotification(message);
   }
 }
