@@ -13,7 +13,7 @@ export class CreateAlertButtonComponent {
   @ViewChild(CreateAlertDialogComponent, { static: true }) createAlertDialog?: CreateAlertDialogComponent;
 
   selectAssetType(type: string) {
-    if (type === 'crypto') {
+    if (type === 'crypto' || type === 'metal') {
       this.createAlertDialog?.show();
     }
   }
