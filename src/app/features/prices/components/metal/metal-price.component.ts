@@ -51,7 +51,7 @@ export class MetalPriceComponent {
     this.error = '';
     this.cdr.markForCheck();
 
-    this.metalService.getGoldPrice(this.selectedCurrency).subscribe({
+    this.metalService.getMetalPrice(this.selectedMetal!, this.selectedCurrency).subscribe({
       next: (price) => {
         this.price = price;
         this.loading = false;

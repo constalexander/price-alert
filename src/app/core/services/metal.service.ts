@@ -8,8 +8,7 @@ export interface MetalPriceResponse {
   base: string;
   timestamp: number;
   rates: {
-    XAU: number;
-    USDXAU: number;
+    [key: string]: number;
   };
 }
 
@@ -23,27 +22,27 @@ export class MetalService {
 
   constructor() {}
 
-  getGoldPrice(currency: string = 'USD'): Observable<number> {
+  getMetalPrice(symbol: string, currency: string = 'USD'): Observable<number> {
     return this.http
       .get<MetalPriceResponse>(`${this.API_URL}/latest`, {
         params: {
           api_key: this.API_KEY,
           base: currency,
-          currencies: 'XAU',
+          currencies: symbol,
         },
       })
-      .pipe(map((response) => response.rates.USDXAU));
+      .pipe(map((response) => response.rates[`USD${symbol}`]));
   }
 
-  getHistoricalGoldPrice(date: string, currency: string = 'USD'): Observable<number> {
+  getHistoricalMetalPrice(symbol: string, date: string, currency: string = 'USD'): Observable<number> {
     return this.http
       .get<MetalPriceResponse>(`${this.API_URL}/${date}`, {
         params: {
           api_key: this.API_KEY,
           base: currency,
-          currencies: 'XAU',
+          currencies: symbol,
         },
       })
-      .pipe(map((response) => response.rates.USDXAU));
+      .pipe(map((response) => response.rates[`USD${symbol}`]));
   }
 }
