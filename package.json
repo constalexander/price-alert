@@ -17,6 +17,15 @@
     "ui:e2e:ui": "pnpm -F @price-alert/ui e2e:ui",
     "ui:e2e:debug": "pnpm -F @price-alert/ui e2e:debug",
     "ui:storybook": "pnpm -F @price-alert/ui storybook",
-    "ui:build-storybook": "pnpm -F @price-alert/ui build-storybook"
+    "ui:build-storybook": "pnpm -F @price-alert/ui build-storybook",
+    "be:dev": "pnpm -F @price-alert/be dev",
+    "be:build": "pnpm -F @price-alert/be build",
+    "be:test": "pnpm -F @price-alert/be test",
+    "be:test:watch": "pnpm -F @price-alert/be test:watch",
+    "be:test:e2e": "pnpm -F @price-alert/be test:e2e",
+    "be:format": "pnpm -F @price-alert/be format",
+    "be:format:check": "pnpm -F @price-alert/be format:check",
+    "be:lint": "pnpm -F @price-alert/be lint",
+    "be:lint:check": "pnpm -F @price-alert/be lint:check"
   }
 }
