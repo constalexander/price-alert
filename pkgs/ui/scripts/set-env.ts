@@ -2,7 +2,9 @@ const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
 
-dotenv.config({ path: '../.env-local' });
+const envLocalFilePath = path.join(__dirname, '../../../.env-local');
+
+dotenv.config({ path: envLocalFilePath });
 
 const environmentFileContent = `export const environment = {
   production: false,
@@ -12,4 +14,4 @@ const environmentFileContent = `export const environment = {
 const environmentFilePath = path.join(__dirname, '../src/environments/environment.ts');
 fs.writeFileSync(environmentFilePath, environmentFileContent);
 
-console.log('Environment file generated!');
+console.log('Environment file generated!', envLocalFilePath, environmentFilePath, environmentFileContent);

@@ -1,2 +1,2 @@
 packages:
-  - "price-alert-ng"
+  - "pkgs/*"

@@ -1,22 +1,22 @@
 {
-  "name": "price-alert-workspace",
+  "name": "price-alert",
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "ui:ng": "pnpm -F price-alert-ng ng",
-    "preui:dev": "pnpm -F price-alert-ng predev",
-    "ui:dev": "pnpm -F price-alert-ng dev",
-    "ui:build": "pnpm -F price-alert-ng build",
-    "ui:watch": "pnpm -F price-alert-ng watch",
-    "ui:test": "pnpm -F price-alert-ng test",
-    "ui:test:watch": "pnpm -F price-alert-ng test:watch",
-    "ui:serve:ssr": "pnpm -F price-alert-ng serve:ssr:price-alert",
-    "ui:format": "pnpm -F price-alert-ng format",
-    "ui:format:check": "pnpm -F price-alert-ng format:check",
-    "ui:e2e": "pnpm -F price-alert-ng e2e",
-    "ui:e2e:ui": "pnpm -F price-alert-ng e2e:ui",
-    "ui:e2e:debug": "pnpm -F price-alert-ng e2e:debug",
-    "ui:storybook": "pnpm -F price-alert-ng storybook",
-    "ui:build-storybook": "pnpm -F price-alert-ng build-storybook"
+    "ui:ng": "pnpm -F @price-alert/ui ng",
+    "preui:dev": "pnpm -F @price-alert/ui predev",
+    "ui:dev": "pnpm -F @price-alert/ui dev",
+    "ui:build": "pnpm -F @price-alert/ui build",
+    "ui:watch": "pnpm -F @price-alert/ui watch",
+    "ui:test": "pnpm -F @price-alert/ui test",
+    "ui:test:watch": "pnpm -F @price-alert/ui test:watch",
+    "ui:serve:ssr": "pnpm -F @price-alert/ui serve:ssr:ui",
+    "ui:format": "pnpm -F @price-alert/ui format",
+    "ui:format:check": "pnpm -F @price-alert/ui format:check",
+    "ui:e2e": "pnpm -F @price-alert/ui e2e",
+    "ui:e2e:ui": "pnpm -F @price-alert/ui e2e:ui",
+    "ui:e2e:debug": "pnpm -F @price-alert/ui e2e:debug",
+    "ui:storybook": "pnpm -F @price-alert/ui storybook",
+    "ui:build-storybook": "pnpm -F @price-alert/ui build-storybook"
   }
 }

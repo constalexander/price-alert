@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  price-alert-ng:
+  pkgs/ui:
     dependencies:
       '@angular/animations':
         specifier: ^19.0.0
