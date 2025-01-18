@@ -1,17 +1,9 @@
 # User API
 
-## Tech stack:
+## Requirements
 
-```still deciding on this stack
-- NestJS
-- NestJS Swagger
-- bcrypt for hashing passwords
-- Passport.js middleware for authentication (local, JWT, OAuth)
-- Prisma
-- PostgreSQL
-- MongoDB
-- Express
-- Socket.io
-- Redis
-- RabbitMQ
-```
+- Use Prisma
+- Use JWT for authentication
+- Use Passport.js for authentication
+- Use bcrypt for hashing passwords
+- Use Swagger for API documentation

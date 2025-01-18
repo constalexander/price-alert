@@ -1,0 +1,35 @@
+# BE
+
+## Tech stack:
+
+- NestJS
+
+```undecided
+- NestJS Swagger
+- bcrypt for hashing passwords
+- Passport.js middleware for authentication (local, JWT, OAuth)
+- Prisma
+- PostgreSQL
+- MongoDB
+- Express
+- Socket.io
+- Redis
+- RabbitMQ
+```
+
+## APIs
+
+- User API
+
+```undecided
+- Price Alert API
+- Price Alert History API
+- Price Alert Email API
+- Price Alert SMS API
+- Price Alert Push API
+- Price Alert Webhook API
+```
+
+## Requirements
+
+- Prefer the CLI to generate files (as much as possible), before generating files "by hand"
