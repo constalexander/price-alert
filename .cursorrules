@@ -3,4 +3,4 @@ Read the files in the cursorrules folder for further context and instructions.
 
 ## Current Task
 
-Build a new REST API in the backend. The API shall be called "User". For this iteration, it should have a single GET endpoint for "healthcheck" to determine if the API is running, and it should return a 200 OK response as well as a string "Price Check User API is running as of <timestamp>".
+The User API is a REST API that will be used to manage users. It currently lives in pkgs/be/src/user, but I want it to be moved to pkgs/be/src/apis/user.
