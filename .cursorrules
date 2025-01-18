@@ -1,0 +1,6 @@
+IMPORTANT:
+Read the files in the cursorrules folder for further context and instructions.
+
+## Current Task
+
+Make a new pkg in the pkgs folder. This package will be called "be" (short for backend). It shall be a NestJS project. We will eventually build APIs, middleware, event management, graphql, background jobs, etc in this package. For now though, just focus on installing NestJS and setting it up well. We want a similar script naming convention to the package.json files we already have between the workspace root and the angular app.
