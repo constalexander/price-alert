@@ -6,7 +6,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get('healthcheck')
-  healthCheck(): string {
-    return this.userService.healthCheck();
+  async healthCheck() {
+    return await this.userService.healthCheck();
   }
 }
