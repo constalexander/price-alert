@@ -45,3 +45,5 @@ Still Needed:
 - Add proper error messages for specific failure cases
 - Add user profile page/settings
 - Add proper JWT token refresh mechanism
+
+Let's begin by building a new header component (using Angular CLI and PrimeNG) that lives in src/app/core/layout/header. This header component should be 100vw wide and 40px tall. It should be dark mode. It should be placed at the top of the app.component.html above the app-sidebar. Also please move the Register and Login buttons from the sandbox comp to the header instead.

@@ -38,3 +38,4 @@
 - Don't put standalone: true in the component decorator
 - Always prefer to use inject() over constructor
 - The local UI frontend (Angular) uses port 4321
+- Everything is dark mode, there is no light mode
