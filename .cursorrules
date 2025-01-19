@@ -1,15 +1,8 @@
+# Price Alert Cursor Rules
+
 IMPORTANT:
-Read the files in the cursorrules folder for further context and instructions.
+Read the files in the <repoRoot>/cursorrules folder for further context and instructions.
 
 ## Current Task
 
-Our Prisma and User API health check endpoint is not working. We need to fix it. When testing the endpoint in Postman, I keep getting:
-
-{
-"message": "Price Alert User API is running as of Jan 18, 2025 6:23 PM",
-"databaseStatus": "Connected",
-"companiesCount": 0,
-"randomCompanyName": "No companies found"
-}
-
-which indicates no companies are found even though there are companies in the database. See screenshot.
+Let's enhance the Metal Price Alert component to allow users to input a decimal value for the price alert. Let's use the Decimal.js library to handle the decimal values. Let's validate the input to ensure it's a valid decimal number according to the currency format. Let's also add a "Save" button to the component that will save the price alert to the database. For now, the "save to database" button will call a mock function that will simulate the save operation from the Angular service.
