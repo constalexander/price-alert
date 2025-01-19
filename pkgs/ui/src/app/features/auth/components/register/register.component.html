@@ -1,48 +1,58 @@
-<div class="flex justify-center items-center min-h-screen bg-gray-100">
-  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Create Account</h2>
-
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4">
-      <div class="flex flex-col gap-2">
-        <label for="email" class="text-sm font-medium text-gray-700">Email</label>
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [draggable]="false"
+  [resizable]="false"
+  [closeOnEscape]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '90vw', maxWidth: '500px' }"
+  header="Create Account"
+  (onHide)="onDialogHide()"
+>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6">
+    <div class="flex flex-col gap-2">
+      <label for="email" class="text-sm font-medium">Email</label>
+      <span class="p-input-icon-left w-full">
+        <i class="pi pi-envelope"></i>
         <input
           id="email"
           type="email"
           pInputText
           formControlName="email"
           [class.ng-invalid]="emailControl?.invalid && emailControl?.touched"
-          class="p-2"
+          class="w-full"
           placeholder="Enter your email"
         />
-        <small class="text-red-500" *ngIf="emailControl?.errors?.['required'] && emailControl?.touched">
-          Email is required
-        </small>
-        <small class="text-red-500" *ngIf="emailControl?.errors?.['email'] && emailControl?.touched">
-          Please enter a valid email address
-        </small>
-      </div>
+      </span>
+      <small class="text-red-500" *ngIf="emailControl?.errors?.['required'] && emailControl?.touched">
+        Email is required
+      </small>
+      <small class="text-red-500" *ngIf="emailControl?.errors?.['email'] && emailControl?.touched">
+        Please enter a valid email address
+      </small>
+    </div>
 
-      <div class="flex flex-col gap-2">
-        <label for="password" class="text-sm font-medium text-gray-700">Password</label>
-        <p-password
-          id="password"
-          formControlName="password"
-          [toggleMask]="true"
-          [feedback]="true"
-          [class.ng-invalid]="passwordControl?.invalid && passwordControl?.touched"
-          placeholder="Enter your password"
-          styleClass="w-full"
-          [inputStyle]="{ padding: '0.5rem' }"
-        ></p-password>
-        <small class="text-red-500" *ngIf="passwordControl?.errors?.['required'] && passwordControl?.touched">
-          Password is required
-        </small>
-        <small class="text-red-500" *ngIf="passwordControl?.errors?.['minlength'] && passwordControl?.touched">
-          Password must be at least 8 characters
-        </small>
-      </div>
+    <div class="flex flex-col gap-2">
+      <label for="password" class="text-sm font-medium">Password</label>
+      <p-password
+        id="password"
+        formControlName="password"
+        [toggleMask]="true"
+        [feedback]="true"
+        [class.ng-invalid]="passwordControl?.invalid && passwordControl?.touched"
+        placeholder="Enter your password"
+        styleClass="w-full"
+        [inputStyle]="{ width: '100%' }"
+        [style]="{ width: '100%' }"
+      ></p-password>
+      <small class="text-red-500" *ngIf="passwordControl?.errors?.['required'] && passwordControl?.touched">
+        Password is required
+      </small>
+      <small class="text-red-500" *ngIf="passwordControl?.errors?.['minlength'] && passwordControl?.touched">
+        Password must be at least 8 characters
+      </small>
+    </div>
 
-      <p-button type="submit" [disabled]="form.invalid" styleClass="w-full" label="Sign Up"></p-button>
-    </form>
-  </div>
-</div>
+    <p-button type="submit" [disabled]="form.invalid" styleClass="w-full" label="Sign Up" severity="primary"></p-button>
+  </form>
+</p-dialog>
