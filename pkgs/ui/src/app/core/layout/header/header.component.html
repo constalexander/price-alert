@@ -1,0 +1,9 @@
+<div class="flex items-center justify-end h-[40px] w-screen bg-surface-900 px-4">
+  <div class="flex items-center gap-4">
+    <p-button label="Register" severity="secondary" [text]="true" (onClick)="showRegisterDialog = true"></p-button>
+    <p-button label="Login" severity="secondary" [text]="true" (onClick)="showLoginDialog = true"></p-button>
+  </div>
+</div>
+
+<app-register [(visible)]="showRegisterDialog"></app-register>
+<app-login [(visible)]="showLoginDialog"></app-login>

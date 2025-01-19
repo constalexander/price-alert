@@ -3,13 +3,6 @@
 
   <div class="space-y-8">
     <section>
-      <div class="flex items-center gap-4 mb-4">
-        <p-button label="Register" severity="secondary" [text]="true" (onClick)="showRegisterDialog = true"></p-button>
-        <p-button label="Login" severity="secondary" [text]="true" (onClick)="showLoginDialog = true"></p-button>
-      </div>
-    </section>
-
-    <section>
       <app-crypto-price></app-crypto-price>
     </section>
 
@@ -17,7 +10,4 @@
       <app-metal-price></app-metal-price>
     </section>
   </div>
-
-  <app-register [(visible)]="showRegisterDialog"></app-register>
-  <app-login [(visible)]="showLoginDialog"></app-login>
 </div>
