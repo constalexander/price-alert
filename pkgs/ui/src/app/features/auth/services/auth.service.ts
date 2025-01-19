@@ -10,7 +10,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
-  private readonly API_URL = `${environment.USER_API_URL}/user`;
+  private readonly API_URL = `${environment.API_BASE_URL}/user`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
   private platformId = inject(PLATFORM_ID);
