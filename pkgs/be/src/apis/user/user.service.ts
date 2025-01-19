@@ -18,26 +18,19 @@ export class UserService {
       hour12: true,
     });
 
-    // Get total count of companies
+    // Get total count and random company
     const count = await this.prisma.company.count();
-
-    // Get a random company
+    const skip = Math.floor(Math.random() * count);
     const randomCompany = await this.prisma.company.findFirst({
-      skip: Math.floor(Math.random() * count),
-    });
-
-    // Create health check record
-    const healthCheck = await this.prisma.healthCheck.create({
-      data: {
-        status: 'OK',
-      },
+      skip,
+      select: { name: true },
     });
 
     return {
-      message: `Price Check User API is running as of ${formattedDate} ${formattedTime}`,
+      message: `Price Alert User API is running as of ${formattedDate} ${formattedTime}`,
       databaseStatus: 'Connected',
+      companiesCount: count,
       randomCompanyName: randomCompany?.name || 'No companies found',
-      lastCheck: healthCheck,
     };
   }
 }

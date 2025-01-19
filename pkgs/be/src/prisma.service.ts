@@ -4,7 +4,8 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 
 // Load environment variables from root .env-local
-dotenv.config({ path: path.resolve(__dirname, '../../../.env-local') });
+const envPath = path.resolve(__dirname, '../../../.env-local');
+dotenv.config({ path: envPath });
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {

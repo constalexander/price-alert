@@ -22,6 +22,8 @@ model Company {
   blog_url String?
   blog_feed_url String?
   twitter_username String?
+
+  @@map("companies")
 }
 
 model HealthCheck {

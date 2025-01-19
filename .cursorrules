@@ -3,4 +3,13 @@ Read the files in the cursorrules folder for further context and instructions.
 
 ## Current Task
 
-I have a MongoDB database hosted on MongoDB Atlas. Let's use Prisma to connect to it. Make sure we do this within the NestJS project. Let's grab some metadata or data or something from the database and return it in the health check endpoint so we can see that the connection is working and pull data from the database. Be sure to ask me any questions you need to ask, or have me do something in MongoDB Atlas since you don't have access to it but I do.
+Our Prisma and User API health check endpoint is not working. We need to fix it. When testing the endpoint in Postman, I keep getting:
+
+{
+"message": "Price Alert User API is running as of Jan 18, 2025 6:23 PM",
+"databaseStatus": "Connected",
+"companiesCount": 0,
+"randomCompanyName": "No companies found"
+}
+
+which indicates no companies are found even though there are companies in the database. See screenshot.
