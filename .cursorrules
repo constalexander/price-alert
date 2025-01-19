@@ -45,3 +45,7 @@ Still Needed:
 - User profile page/settings
 - Email verification functionality
 - Password reset functionality
+
+First, let's abstract some business logic into a service for reuse. The idea here is that we will have non-authenticated users, authenticated users, and super users. Throughout the app, I will want to show/hide things based on the user's role or whether they are authenticated or not.
+
+Let's encapsulate this logic in the existing AuthService of the UI.

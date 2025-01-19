@@ -7,8 +7,8 @@ export const roleGuard = (allowedRoles: string[]): CanActivateFn => {
     const router = inject(Router);
     const authService = inject(AuthService);
 
-    if (!authService.isAuthenticated()) {
-      router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    if (!authService.isAuthenticatedUser()) {
+      router.navigate(['/']);
       return false;
     }
 

@@ -42,24 +42,27 @@ export class AuthService {
   }
 
   private startRefreshTokenTimer() {
-    // Parse the JWT token to get expiration
+    if (!isPlatformBrowser(this.platformId)) return;
+
     const token = this.getStoredToken();
     if (!token) return;
 
     const jwtToken = JSON.parse(atob(token.split('.')[1]));
     const expires = new Date(jwtToken.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - 60 * 1000; // Refresh 1 minute before expiry
+    const timeout = expires.getTime() - Date.now() - 60 * 1000;
 
     this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
   }
 
   private stopRefreshTokenTimer() {
-    clearTimeout(this.refreshTokenTimeout);
+    if (isPlatformBrowser(this.platformId)) {
+      clearTimeout(this.refreshTokenTimeout);
+    }
   }
 
   private refreshToken() {
     const userId = this.currentUserSubject.value?.id;
-    const refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    const refreshToken = this.getStoredRefreshToken();
 
     if (!userId || !refreshToken) {
       return new Observable((subscriber) => {
@@ -92,25 +95,33 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem(this.TOKEN_KEY);
+      localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+    }
     this.currentUserSubject.next(null);
     this.stopRefreshTokenTimer();
   }
 
   private handleAuthResponse(response: AuthResponse) {
-    localStorage.setItem(this.TOKEN_KEY, response.accessToken);
-    localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem(this.TOKEN_KEY, response.accessToken);
+      localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
+    }
     this.currentUserSubject.next(response.user);
     this.startRefreshTokenTimer();
   }
 
   getStoredToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    return isPlatformBrowser(this.platformId) ? localStorage.getItem(this.TOKEN_KEY) : null;
   }
 
-  isAuthenticated(): boolean {
-    return !!this.getStoredToken();
+  private getStoredRefreshToken(): string | null {
+    return isPlatformBrowser(this.platformId) ? localStorage.getItem(this.REFRESH_TOKEN_KEY) : null;
+  }
+
+  isAuthenticatedUser(): boolean {
+    return !!this.currentUserSubject.value;
   }
 
   getUserRole(): string {
@@ -118,13 +129,21 @@ export class AuthService {
     return currentUser?.role || '';
   }
 
-  hasRole(role: UserRole): boolean {
-    return this.getUserRole() === role;
+  isRegularUser(): boolean {
+    return this.getUserRole() === UserRole.USER;
+  }
+
+  isSuperUser(): boolean {
+    return this.getUserRole() === UserRole.SUPER_USER;
+  }
+
+  getCurrentUser(): User | null {
+    return this.currentUserSubject.value;
   }
 
   handleTokenRefresh(): Observable<string> {
     const userId = this.currentUserSubject.value?.id;
-    const refreshToken = localStorage.getItem(this.REFRESH_TOKEN_KEY);
+    const refreshToken = this.getStoredRefreshToken();
 
     if (!userId || !refreshToken) {
       return new Observable((subscriber) => {
