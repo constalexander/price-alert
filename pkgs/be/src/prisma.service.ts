@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 
 // Load environment variables from root .env-local
-const envPath = path.resolve(__dirname, '../../../.env-local');
+const envPath = path.resolve(__dirname, '/.env');
 dotenv.config({ path: envPath });
 
 @Injectable()
