@@ -50,14 +50,27 @@
       </small>
     </div>
 
+    <div *ngIf="errorMessage" class="text-red-500 text-sm">
+      {{ errorMessage }}
+    </div>
+
     <div class="flex flex-col gap-2">
       <p-button
         type="submit"
-        [disabled]="form.invalid"
+        [disabled]="form.invalid || isLoading"
         styleClass="w-full"
-        label="Sign Up"
+        [label]="isLoading ? 'Creating Account...' : 'Sign Up'"
         severity="primary"
-      ></p-button>
+      >
+        <p-progressSpinner
+          *ngIf="isLoading"
+          [style]="{ width: '20px', height: '20px' }"
+          styleClass="ml-2"
+          strokeWidth="4"
+          fill="transparent"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+      </p-button>
     </div>
   </form>
 </p-dialog>
