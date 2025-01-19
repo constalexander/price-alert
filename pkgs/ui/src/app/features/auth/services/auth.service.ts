@@ -5,6 +5,11 @@ import { environment } from '@/env/environment';
 import { User, AuthResponse, RegisterDto, LoginDto } from '@/core/models/auth.model';
 import { isPlatformBrowser } from '@angular/common';
 
+export enum UserRole {
+  USER = 'USER',
+  SUPER_USER = 'SUPER_USER',
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -25,7 +30,11 @@ export class AuthService {
   private loadStoredUser() {
     const token = localStorage.getItem(this.TOKEN_KEY);
     if (token) {
-      // TODO: Decode token and set user or make API call to /me endpoint
+      // Get user info from /me endpoint
+      this.http.get<User>(`${this.API_URL}/me`).subscribe({
+        next: (user) => this.currentUserSubject.next(user),
+        error: () => this.logout(), // Token might be invalid/expired
+      });
     }
   }
 
@@ -60,5 +69,14 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.getStoredToken();
+  }
+
+  getUserRole(): string {
+    const currentUser = this.currentUserSubject.value;
+    return currentUser?.role || '';
+  }
+
+  hasRole(role: UserRole): boolean {
+    return this.getUserRole() === role;
   }
 }
