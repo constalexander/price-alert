@@ -14,12 +14,13 @@ export interface LoginUserDto {
 
 export interface AuthResponse {
   accessToken: string;
+  refreshToken: string;
   user: {
     id: string;
     email: string;
-    firstName?: string;
-    lastName?: string;
-    role: Role;
+    firstName: string | null;
+    lastName: string | null;
+    role: string;
     isVerified: boolean;
   };
 }
@@ -27,5 +28,10 @@ export interface AuthResponse {
 export interface JwtPayload {
   sub: string;
   email: string;
-  role: Role;
+  role: string;
+}
+
+export interface RefreshTokenPayload {
+  sub: string;
+  refreshToken: string;
 }

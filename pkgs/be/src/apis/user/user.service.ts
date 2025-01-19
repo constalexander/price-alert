@@ -21,6 +21,94 @@ export class UserService {
     private jwtService: JwtService,
   ) {}
 
+  private generateTokens(payload: JwtPayload): {
+    accessToken: string;
+    refreshToken: string;
+  } {
+    const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
+    return { accessToken, refreshToken };
+  }
+
+  private async storeRefreshToken(
+    userId: string,
+    refreshToken: string,
+  ): Promise<void> {
+    const refreshTokenExp = new Date();
+    refreshTokenExp.setDate(refreshTokenExp.getDate() + 7); // 7 days from now
+
+    await this.prisma.user.update({
+      where: { id: userId },
+      data: {
+        refreshToken,
+        refreshTokenExp,
+      },
+    });
+  }
+
+  async refreshToken(
+    userId: string,
+    oldRefreshToken: string,
+  ): Promise<AuthResponse> {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user || !user.refreshToken || user.refreshToken !== oldRefreshToken) {
+      throw new UnauthorizedException('Invalid refresh token');
+    }
+
+    if (user.refreshTokenExp && user.refreshTokenExp < new Date()) {
+      throw new UnauthorizedException('Refresh token expired');
+    }
+
+    const payload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    const { accessToken, refreshToken } = this.generateTokens(payload);
+    await this.storeRefreshToken(user.id, refreshToken);
+
+    return {
+      accessToken,
+      refreshToken,
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        isVerified: user.isVerified,
+      },
+    };
+  }
+
+  private async generateAuthResponse(user: User): Promise<AuthResponse> {
+    const payload: JwtPayload = {
+      sub: user.id,
+      email: user.email,
+      role: user.role,
+    };
+
+    const { accessToken, refreshToken } = this.generateTokens(payload);
+    await this.storeRefreshToken(user.id, refreshToken);
+
+    return {
+      accessToken,
+      refreshToken,
+      user: {
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
+        isVerified: user.isVerified,
+      },
+    };
+  }
+
   async register(dto: RegisterUserDto): Promise<AuthResponse> {
     const existingUser = await this.prisma.user.findUnique({
       where: { email: dto.email },
@@ -58,26 +146,6 @@ export class UserService {
     }
 
     return this.generateAuthResponse(user);
-  }
-
-  private generateAuthResponse(user: User): AuthResponse {
-    const payload: JwtPayload = {
-      sub: user.id,
-      email: user.email,
-      role: user.role,
-    };
-
-    return {
-      accessToken: this.jwtService.sign(payload),
-      user: {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-        isVerified: user.isVerified,
-      },
-    };
   }
 
   async validateUser(username: string, password: string): Promise<User | null> {

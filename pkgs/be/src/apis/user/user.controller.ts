@@ -32,6 +32,12 @@ export class UserController {
     return req.user;
   }
 
+  @Post('refresh-token')
+  async refreshToken(@Request() req) {
+    const { userId, refreshToken } = req.body;
+    return this.userService.refreshToken(userId, refreshToken);
+  }
+
   @Get('health')
   async healthCheck() {
     return this.userService.healthCheck();

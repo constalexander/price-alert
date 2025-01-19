@@ -45,3 +45,5 @@ Still Needed:
 - User profile page/settings
 - Email verification functionality
 - Password reset functionality
+
+Please do the JWT token refresh mechanism first.
