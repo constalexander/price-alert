@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { CryptoPriceComponent } from '@/features/prices/components/crypto/crypto-price.component';
 import { MetalPriceComponent } from '@/features/prices/components/metal/metal-price.component';
+import { RegisterComponent } from '@/features/auth/components/register/register.component';
 
 @Component({
   selector: 'app-sandbox',
-  imports: [CommonModule, CryptoPriceComponent, MetalPriceComponent],
+  imports: [CommonModule, CryptoPriceComponent, MetalPriceComponent, RegisterComponent],
   templateUrl: './sandbox.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
