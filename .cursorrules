@@ -5,4 +5,4 @@ Read the files in the <repoRoot>/cursorrules folder for further context and inst
 
 ## Current Task
 
-Let's enhance the Metal Price Alert component to allow users to input a decimal value for the price alert. Let's use the Decimal.js library to handle the decimal values. Let's validate the input to ensure it's a valid decimal number according to the currency format. Let's also add a "Save" button to the component that will save the price alert to the database. For now, the "save to database" button will call a mock function that will simulate the save operation from the Angular service.
+Given the existing code and infrastructure (mongodb hosted on Atlas), Prisma, NestJS, and Angular... how can we implement a user registration and login system? I want to use Passport.js for authentication. Please give me an outline of the steps to take, and ask me for clarification questions as needed. Before starting, and at milestones along the way, please ask me for permission to proceed.
