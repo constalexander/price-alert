@@ -37,13 +37,11 @@ Here's what we've done so far:
 9. Add user session management
 10. Add logout functionality in the UI
 11. Implement role-based access control (SUPER_USER vs USER)
+12. JWT token refresh mechanism
 
 Still Needed:
 
-- JWT token refresh mechanism
 - Error messages for specific failure cases
 - User profile page/settings
 - Email verification functionality
 - Password reset functionality
-
-Please do the JWT token refresh mechanism first.
