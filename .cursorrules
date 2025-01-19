@@ -32,14 +32,16 @@ Here's what we've done so far:
    - Reactive form best practices
    - PrimeNG UI integration
    - Dialog-based presentation
+7. Created login form component
 
 Still Needed:
 
-1. Create login form component
-2. Implement route guards for protected routes
-3. Add user session management
-4. Add email verification functionality
-5. Add password reset functionality
-6. Implement role-based access control (SUPER_USER vs USER)
-
-Let's work on first making sure that the registration form works. I want to test it from end to end manually, so guide me through that process.
+- Implement route guards for protected routes
+- Add user session management
+- Add logout functionality in the UI
+- Add email verification functionality
+- Add password reset functionality
+- Implement role-based access control (SUPER_USER vs USER)
+- Add proper error messages for specific failure cases
+- Add user profile page/settings
+- Add proper JWT token refresh mechanism

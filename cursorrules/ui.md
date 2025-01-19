@@ -37,4 +37,4 @@
 - Do not ever ever ever modify app.config.ts
 - Don't put standalone: true in the component decorator
 - Always prefer to use inject() over constructor
-- The local UI uses port 4321
+- The local UI frontend (Angular) uses port 4321

@@ -45,7 +45,7 @@ export class UserService {
 
   async login(dto: LoginUserDto): Promise<AuthResponse> {
     const user = await this.prisma.user.findUnique({
-      where: { email: dto.email },
+      where: { email: dto.username },
     });
 
     if (!user) {
@@ -80,9 +80,9 @@ export class UserService {
     };
   }
 
-  async validateUser(email: string, password: string): Promise<User | null> {
+  async validateUser(username: string, password: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({
-      where: { email },
+      where: { email: username },
     });
 
     if (user && (await bcrypt.compare(password, user.password))) {
