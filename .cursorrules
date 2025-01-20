@@ -38,12 +38,12 @@ Here's what we've done so far:
 10. Add logout functionality in the UI
 11. Implement role-based access control (SUPER_USER vs USER)
 12. JWT token refresh mechanism
+13. User profile page/settings
 
 Still Needed:
 
 - Error messages for specific failure cases
-- User profile page/settings
 - Email verification functionality
 - Password reset functionality
 
-Let's update the Settings/Account page. First of all, we don't want a settings.component. What we need is an AccountComponent and a PreferencesComponent. And both of those should be their own routes (/account and /preferences respectively). They should live under the Settings menu item in the sidebar. Let's work on that first, and then just for fun lets put the logged in user's email in the AccountComponent as a start. Also be sure there are route guards in place to prevent unauthorized access to these pages as well as make them not even visible to non-authenticated users.
+What can we do to have email verification functionality?
