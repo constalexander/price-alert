@@ -45,3 +45,5 @@ Still Needed:
 - User profile page/settings
 - Email verification functionality
 - Password reset functionality
+
+First, please remove the Company model from the Prisma schema. Make sure to make that change go end to end.

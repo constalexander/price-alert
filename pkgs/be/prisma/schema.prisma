@@ -13,19 +13,6 @@ datasource db {
   url      = env("MONGODB_ATLAS_CONNECTION_STRING")
 }
 
-model Company {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  permalink String?
-  crunchbase_url String?
-  homepage_url String?
-  blog_url String?
-  blog_feed_url String?
-  twitter_username String?
-
-  @@map("companies")
-}
-
 model HealthCheck {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   timestamp DateTime @default(now())
