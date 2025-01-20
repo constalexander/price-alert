@@ -16,9 +16,15 @@ export const routes: Routes = [
     canActivate: [authGuard, () => roleGuard([UserRole.SUPER_USER])],
   },
   {
-    path: 'settings',
-    loadComponent: () => import('./core/pages/settings/settings.component').then((m) => m.SettingsComponent),
-    title: 'Settings',
+    path: 'account',
+    loadComponent: () => import('./core/pages/account/account.component').then((m) => m.AccountComponent),
+    title: 'Account',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'preferences',
+    loadComponent: () => import('./core/pages/preferences/preferences.component').then((m) => m.PreferencesComponent),
+    title: 'Preferences',
     canActivate: [authGuard],
   },
   {

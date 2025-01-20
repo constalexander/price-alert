@@ -41,20 +41,25 @@ export class SidebarComponent {
           {
             label: 'Account',
             icon: 'pi pi-user',
-            routerLink: '/settings',
+            routerLink: '/account',
+          },
+          {
+            label: 'Preferences',
+            icon: 'pi pi-sliders-h',
+            routerLink: '/preferences',
           },
         ],
       });
-    }
 
-    if (this.authService.isSuperUser()) {
-      const dashboardMenu = menuItems.find((item) => item.label === 'Dashboard');
-      if (dashboardMenu?.items) {
-        dashboardMenu.items.push({
-          label: 'Sandbox',
-          icon: 'pi pi-code',
-          routerLink: '/sandbox',
-        });
+      if (this.authService.isSuperUser()) {
+        const dashboardMenu = menuItems.find((item) => item.label === 'Dashboard');
+        if (dashboardMenu?.items) {
+          dashboardMenu.items.push({
+            label: 'Sandbox',
+            icon: 'pi pi-code',
+            routerLink: '/sandbox',
+          });
+        }
       }
     }
 

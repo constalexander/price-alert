@@ -18,9 +18,10 @@ export class AuthService {
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly API_URL = `${environment.API_BASE_URL}/user`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
   private platformId = inject(PLATFORM_ID);
   private refreshTokenTimeout: any;
+
+  public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
     if (isPlatformBrowser(this.platformId)) {
