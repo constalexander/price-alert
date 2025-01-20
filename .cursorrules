@@ -46,4 +46,4 @@ Still Needed:
 - Email verification functionality
 - Password reset functionality
 
-What can we do to have email verification functionality?
+What can we do to have email verification functionality? Explain to me how email service providers work, what are my options? SendGrid, AWS SES, what else? And how does that compare to doing NodeMailer? Where do I host these things? Do I have to worry about my reputation score and getting blacklisted? How do I ensure people don't abuse my email service?
