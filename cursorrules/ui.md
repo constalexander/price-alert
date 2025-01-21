@@ -39,3 +39,4 @@
 - Always prefer to use inject() over constructor
 - The local UI frontend (Angular) uses port 4321
 - Everything is dark mode, there is no light mode
+- Do NOT modify, touch, change or alter the PrimeNG theme at pkgs/ui/src/app/prime-theme.ts
