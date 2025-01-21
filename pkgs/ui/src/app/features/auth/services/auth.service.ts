@@ -51,8 +51,7 @@ export class AuthService {
     try {
       const jwtToken = JSON.parse(atob(token.split('.')[1]));
       const expires = new Date(jwtToken.exp * 1000);
-      // const timeout = expires.getTime() - Date.now() - 2 * 60 * 1000; // Refresh 2 minutes before expiry
-      const timeout = 2 * 60 * 1000;
+      const timeout = expires.getTime() - Date.now() - 2 * 60 * 1000; // Refresh 2 minutes before expiry
 
       if (timeout <= 0) {
         this.refreshToken().subscribe({
