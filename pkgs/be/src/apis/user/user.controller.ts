@@ -26,7 +26,6 @@ export class UserController {
     return this.userService.login(dto);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('me')
   getProfile(@Request() req) {
     return req.user;

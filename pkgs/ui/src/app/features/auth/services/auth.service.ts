@@ -1,6 +1,6 @@
 import { Injectable, inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap, map } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map, catchError, throwError } from 'rxjs';
 import { environment } from '@/env/environment';
 import { User, AuthResponse, RegisterDto, LoginDto } from '@/core/models/auth.model';
 import { isPlatformBrowser } from '@angular/common';
@@ -48,11 +48,35 @@ export class AuthService {
     const token = this.getStoredToken();
     if (!token) return;
 
-    const jwtToken = JSON.parse(atob(token.split('.')[1]));
-    const expires = new Date(jwtToken.exp * 1000);
-    const timeout = expires.getTime() - Date.now() - 60 * 1000;
+    try {
+      const jwtToken = JSON.parse(atob(token.split('.')[1]));
+      const expires = new Date(jwtToken.exp * 1000);
+      // const timeout = expires.getTime() - Date.now() - 2 * 60 * 1000; // Refresh 2 minutes before expiry
+      const timeout = 2 * 60 * 1000;
 
-    this.refreshTokenTimeout = setTimeout(() => this.refreshToken().subscribe(), timeout);
+      if (timeout <= 0) {
+        this.refreshToken().subscribe({
+          error: (err) => {
+            console.error('Error refreshing token:', err);
+            this.logout();
+          },
+        });
+        return;
+      }
+
+      this.stopRefreshTokenTimer();
+      this.refreshTokenTimeout = setTimeout(() => {
+        this.refreshToken().subscribe({
+          error: (err) => {
+            console.error('Error refreshing token:', err);
+            this.logout();
+          },
+        });
+      }, timeout);
+    } catch (error) {
+      console.error('Error parsing JWT token:', error);
+      this.logout();
+    }
   }
 
   private stopRefreshTokenTimer() {
@@ -147,15 +171,20 @@ export class AuthService {
     const refreshToken = this.getStoredRefreshToken();
 
     if (!userId || !refreshToken) {
-      return new Observable((subscriber) => {
-        this.logout();
-        subscriber.error('No refresh token available');
-      });
+      this.logout();
+      return throwError(() => new Error('No refresh token available'));
     }
 
     return this.http.post<AuthResponse>(`${this.API_URL}/refresh-token`, { userId, refreshToken }).pipe(
-      tap((response) => this.handleAuthResponse(response)),
-      map((response) => response.accessToken)
+      tap((response) => {
+        this.handleAuthResponse(response);
+        this.startRefreshTokenTimer();
+      }),
+      map((response) => response.accessToken),
+      catchError((error) => {
+        this.logout();
+        return throwError(() => error);
+      })
     );
   }
 }

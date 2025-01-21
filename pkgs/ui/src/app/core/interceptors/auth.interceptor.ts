@@ -1,16 +1,23 @@
 import { inject } from '@angular/core';
 import { HttpRequest, HttpHandlerFn, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { catchError, filter, take, switchMap } from 'rxjs/operators';
+import { catchError, filter, take, switchMap, finalize } from 'rxjs/operators';
 import { AuthService } from '@/features/auth/services/auth.service';
 
 let isRefreshing = false;
+let refreshAttempts = 0;
+const MAX_REFRESH_ATTEMPTS = 3;
 const refreshTokenSubject = new BehaviorSubject<string | null>(null);
 
 export function authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
   const authService = inject(AuthService);
-  const token = authService.getStoredToken();
 
+  // Skip token for refresh token requests to prevent infinite loop
+  if (req.url.includes('/refresh-token')) {
+    return next(req);
+  }
+
+  const token = authService.getStoredToken();
   if (token) {
     req = addToken(req, token);
   }
@@ -38,6 +45,15 @@ function handle401Error(request: HttpRequest<unknown>, next: HttpHandlerFn, auth
     isRefreshing = true;
     refreshTokenSubject.next(null);
 
+    if (refreshAttempts >= MAX_REFRESH_ATTEMPTS) {
+      isRefreshing = false;
+      refreshAttempts = 0;
+      authService.logout();
+      return throwError(() => new Error('Max refresh attempts exceeded'));
+    }
+
+    refreshAttempts++;
+
     return authService.handleTokenRefresh().pipe(
       switchMap((token: string) => {
         isRefreshing = false;
@@ -48,6 +64,9 @@ function handle401Error(request: HttpRequest<unknown>, next: HttpHandlerFn, auth
         isRefreshing = false;
         authService.logout();
         return throwError(() => err);
+      }),
+      finalize(() => {
+        isRefreshing = false;
       })
     );
   }
