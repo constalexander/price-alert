@@ -32,6 +32,7 @@
     "be:format": "pnpm -F @price-alert/be format",
     "be:format:check": "pnpm -F @price-alert/be format:check",
     "be:lint": "pnpm -F @price-alert/be lint",
-    "be:lint:check": "pnpm -F @price-alert/be lint:check"
+    "be:lint:check": "pnpm -F @price-alert/be lint:check",
+    "linear:sync": "pnpm -F @price-alert/linear sync"
   }
 }
