@@ -35,15 +35,3 @@ Thumbs.db
 node_modules/
 npm-debug.log
 .env-local
-
-# UI
-**/*/.angular/cache
-**/*/node_modules/
-**/*/test-results/
-**/*/playwright-report/
-**/*/blob-report/
-**/*/playwright/.cache/
-**/*/*storybook.log
-**/*/src/environments/environment.ts
-**/*/coverage
-**/*/dist

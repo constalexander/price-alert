@@ -1,0 +1,13 @@
+node_modules/
+
+dist/
+tmp/
+.angular/cache/
+.DS_Store
+
+coverage
+test-results/
+playwright-report/
+playwright/.cache/
+storybook.log
+src/environments/environment.ts
