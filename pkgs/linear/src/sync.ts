@@ -20,10 +20,19 @@ export class LinearSyncService {
     this.syncState = {
       lastSyncTimestamp: Date.now(),
     };
-    this.ensureDataDir(config.dataDir);
+  }
+
+  private async cleanDataDir(dataDir: string) {
+    try {
+      await fs.rm(dataDir, { recursive: true, force: true });
+      console.log('Cleaned data directory');
+    } catch (error) {
+      console.error('Error cleaning data directory:', error);
+    }
   }
 
   private async ensureDataDir(dataDir: string) {
+    await this.cleanDataDir(dataDir);
     await fs.mkdir(dataDir, { recursive: true });
     await fs.mkdir(path.join(dataDir, 'issues'), { recursive: true });
     await fs.mkdir(path.join(dataDir, 'projects'), { recursive: true });
@@ -102,6 +111,9 @@ export class LinearSyncService {
       console.log(
         `Starting ${this.isInitialSync ? 'initial' : 'incremental'} sync...`,
       );
+
+      // Clean and recreate data directory
+      await this.ensureDataDir(dataDir);
 
       // Fetch all data
       const [issues, projects, teams, states] = await Promise.all([
