@@ -5,43 +5,4 @@ Read the files in the <repoRoot>/cursorrules folder for further context and inst
 
 ## Current Task
 
-Given the existing code and infrastructure (mongodb hosted on Atlas), Prisma, NestJS, and Angular... how can we implement a user registration and login system? I want to use Passport.js for authentication. Please give me an outline of the steps to take, and ask me for clarification questions as needed. Before starting, and at milestones along the way, please ask me for permission to proceed.
-
-Here's what we've done so far:
-
-1. Created User model in Prisma with necessary fields
-2. Set up basic Passport.js authentication in NestJS backend
-   - Local strategy for username/password
-   - JWT strategy for token auth
-3. Created user registration endpoints
-4. Created the registration form UI component with:
-   - Email and password validation
-   - Dark theme integration
-   - Dialog-based presentation
-   - Form validation
-5. Created AuthService with:
-   - JWT token management
-   - Registration/login methods
-   - Authentication state management
-   - Platform-aware localStorage usage
-   - Proper TypeScript interfaces in core/models
-6. Enhanced Registration Component with:
-   - Proper form validation
-   - Loading states
-   - Error handling
-   - Reactive form best practices
-   - PrimeNG UI integration
-   - Dialog-based presentation
-7. Created login form component
-8. Implement route guards for protected routes
-9. Add user session management
-10. Add logout functionality in the UI
-11. Implement role-based access control (SUPER_USER vs USER)
-12. JWT token refresh mechanism
-13. User profile page/settings
-
-Still Needed:
-
-- Email verification functionality with Mailgun
-- Error messages for specific failure cases
-- Password reset functionality
+I am done with the purple colors. I just want a bluegray + light green theme.
