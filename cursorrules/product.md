@@ -9,3 +9,8 @@ Get notified when a stock, ETF, crypto or precious metal reaches a certain price
 - Email verification functionality with Mailgun
 - Error messages for specific failure cases
 - Password reset functionality
+- Swagger API documentation
+- full unit testing
+- full integration testing
+- full end to end testing
+- fully Storybook
