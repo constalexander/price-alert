@@ -32,7 +32,9 @@ export class LinearSyncService {
   }
 
   private async ensureDataDir(dataDir: string) {
-    await this.cleanDataDir(dataDir);
+    if (this.isInitialSync) {
+      await this.cleanDataDir(dataDir);
+    }
     await fs.mkdir(dataDir, { recursive: true });
     await fs.mkdir(path.join(dataDir, 'issues'), { recursive: true });
     await fs.mkdir(path.join(dataDir, 'projects'), { recursive: true });
@@ -102,14 +104,19 @@ export class LinearSyncService {
     id: string,
     data: unknown,
   ) {
-    const filePath = path.join(dataDir, type, `${id}.json`);
+    let filename = `${id}.json`;
+    if (type === 'issues' && 'identifier' in (data as Issue)) {
+      filename = `${(data as Issue).identifier}-${id}.json`;
+    }
+    const filePath = path.join(dataDir, type, filename);
     await fs.writeFile(filePath, JSON.stringify(data, null, 2));
   }
 
   public async sync(dataDir: string): Promise<SyncResult> {
     try {
+      const now = new Date().toISOString();
       console.log(
-        `Starting ${this.isInitialSync ? 'initial' : 'incremental'} sync...`,
+        `[${now}] Starting ${this.isInitialSync ? 'initial' : 'incremental'} sync...`,
       );
 
       // Clean and recreate data directory
@@ -167,13 +174,12 @@ export class LinearSyncService {
 
   public async startSync(
     dataDir: string,
-    interval: number = 300000,
+    interval: number = 5000,
   ): Promise<void> {
     try {
       // Initial sync
       await this.sync(dataDir);
 
-      // Sync every 5 minutes by default
       setInterval(async () => {
         await this.sync(dataDir);
       }, interval);

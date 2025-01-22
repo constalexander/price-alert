@@ -17,7 +17,7 @@ if (!linearApiKey) {
 const config = {
   linearApiKey,
   dataDir,
-  syncInterval: 300000, // 5 minutes
+  syncInterval: 5000,
 };
 
 const syncService = new LinearSyncService(config);

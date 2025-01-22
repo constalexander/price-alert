@@ -10,4 +10,3 @@ test-results/
 playwright-report/
 playwright/.cache/
 storybook.log
-src/environments/environment.ts
