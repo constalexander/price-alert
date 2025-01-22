@@ -114,8 +114,9 @@ export class LinearSyncService {
 
   public async sync(dataDir: string): Promise<SyncResult> {
     try {
+      const now = new Date().toISOString();
       console.log(
-        `Starting ${this.isInitialSync ? 'initial' : 'incremental'} sync...`,
+        `[${now}] Starting ${this.isInitialSync ? 'initial' : 'incremental'} sync...`,
       );
 
       // Clean and recreate data directory
@@ -173,7 +174,7 @@ export class LinearSyncService {
 
   public async startSync(
     dataDir: string,
-    interval: number = 1000, // 1 seconds
+    interval: number = 5000,
   ): Promise<void> {
     try {
       // Initial sync
