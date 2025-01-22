@@ -4,3 +4,5 @@ IMPORTANT:
 Read the files in the <repoRoot>/cursorrules folder for further context and instructions.
 
 ## Current Task
+
+Please install ngx page object model and use it to create page objects for the UI tests. Let's use it just on the Home page component right now. So please rewrite the HomeComponent tests to use the page object model, and the Angular Testing Library.
