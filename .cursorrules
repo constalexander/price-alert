@@ -5,4 +5,4 @@ Read the files in the <repoRoot>/cursorrules folder for further context and inst
 
 ## Current Task
 
-I am done with the purple colors. I just want a bluegray + light green theme.
+I want to integrate Linear into this project's Cursor workflow. See, I am using Cursor Composer to generate code in this project. I want to be able to plan the product in Linear and then generate the code in Cursor, and I want to be able to modify Linear data from Cursor. So we need 2-way sync from Linear to Cursor and from Cursor to Linear. We should do this through the official Linear GraphQL API and using the official Linear Javascript/Typescript SDK. We'll have to write our own scripts to sync the data, starting with a Linear client to connect. Then we need a background script to run periodically to sync the data. The Cursor API key is in my .env-local file under the CURSOR_API_KEY variable.
